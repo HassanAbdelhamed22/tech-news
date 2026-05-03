@@ -1,8 +1,26 @@
+import { useState, useEffect } from "react";
 import "../../styles/Header.css";
 
 const Header = () => {
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 20) {
+        setIsScrolled(true);
+      } else {
+        setIsScrolled(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
   return (
-    <header className="header">
+    <header className={`header glass ${isScrolled ? "scrolled" : ""}`}>
       <div className="container header-container">
         <a href="/" className="logo">
           TECH<span>NEWS</span>
@@ -24,7 +42,7 @@ const Header = () => {
         </nav>
 
         <div className="header-actions">
-          <button className="btn-primary">Subscribe</button>
+          <button className="btn btn-primary">Subscribe</button>
         </div>
       </div>
     </header>
@@ -32,3 +50,4 @@ const Header = () => {
 };
 
 export default Header;
+
