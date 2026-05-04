@@ -3,6 +3,7 @@ import brainImage from "../../assets/brain_scans.png";
 import LikeButton from "./LikeButton";
 import DislikeButton from "./DislikeButton";
 import { Bookmark } from "lucide-react";
+import { Link } from "react-router";
 
 const Card = ({
   id,
@@ -29,9 +30,11 @@ const Card = ({
           <span className="card-dot">•</span>
           <span className="card-date">{date}</span>
         </div>
-        <h2 className="card-title">{title}</h2>
+        <Link to={`/news/${id}`} className="card-title-link">
+          <h2 className="card-title">{title}</h2>
+        </Link>
         <p className="card-subtitle">{subtitle}</p>
-        {description && <p className="card-description">{description}</p>}
+        
         <div className="card-author">By {author}</div>
         <div className="card-actions">
           <LikeButton
@@ -53,13 +56,13 @@ const Card = ({
           </button>
         </div>
       </div>
-      <div className="card-image-container">
+      <Link to={`/news/${id}`} className="card-image-container">
         <img
           src={imageUrl || brainImage}
           alt={title || "Article visual"}
           className="card-image"
         />
-      </div>
+      </Link>
     </div>
   );
 };

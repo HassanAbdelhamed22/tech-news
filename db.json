@@ -20,6 +20,11 @@
       "userId": 1,
       "newsId": "HDzQ5ZdSdPY",
       "id": 1
+    },
+    {
+      "userId": 2,
+      "newsId": "aiKsBLR_48w",
+      "id": 2
     }
   ],
   "news": [
@@ -163,7 +168,9 @@
       "description": "Overview\nImagine building an amazing software product that no one can use, or even knows exists simply because it lacks proper documentation. Unfortunately, there are plenty of projects like that.\n\nYours doesn't have to be one of them.\n\nEarlier I published an article The Final 1% of Every GitHub Project: Sealing It Properly, where README was literally the first item on the list. Yes, it's that important, and that's why I decided to take a deeper look into this topic.\n\nIf you're a software engineer, knowing how to write proper documentation is one of the most critical skills you can have. There's no excuse for skipping it or considering it as optional.\n\nYes, coding is way more fun. But coming back later and trying to understand what you did (and why you did it) without any reference is far less fun than writing a few clear notes upfront.\n\nAnd if you want your work to be recognized, used, contributed to, or even starred, documentation isn't optional. It's one of the first things people see, and often the reason they stay... or leave.\n\nBut this article isn't about documentation as a whole, that's a massive topic and it deserves to be broken down. There are many different types of documentation, each serving a different purpose.\n\nHere, we're focusing on the most essential one: the README.",
       "image": "https://images.unsplash.com/photo-1599059285716-b217140c0ef3?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       "author": "Mazen Raafet",
-      "id": "aiKsBLR_48w"
+      "id": "aiKsBLR_48w",
+      "likes": 1,
+      "dislikes": 0
     },
     {
       "id": "fx85dDSifuM",
