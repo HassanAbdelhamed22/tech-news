@@ -38,12 +38,12 @@
 }
 
 .card-dot {
-  color: var(--muted-foreground);
+  color: var(--fg-subtle);
   font-size: 0.5rem;
 }
 
 .card-date {
-  color: var(--muted-foreground);
+  color: var(--fg-muted);
   font-size: 0.875rem;
   font-weight: 500;
 }
@@ -52,7 +52,7 @@
   font-size: 1.85rem;
   font-weight: 800;
   line-height: 1.2;
-  color: var(--foreground);
+  color: var(--fg-main);
   margin-bottom: 1rem;
   letter-spacing: -0.03em;
   transition: var(--transition);
@@ -64,7 +64,7 @@
 
 .card-subtitle {
   font-size: 1.1rem;
-  color: var(--muted-foreground);
+  color: var(--fg-muted);
   line-height: 1.5;
   margin-bottom: 1rem;
   display: -webkit-box;
@@ -87,7 +87,7 @@
 .card-author {
   font-size: 0.875rem;
   font-weight: 600;
-  color: var(--foreground);
+  color: var(--fg-main);
   display: flex;
   align-items: center;
   gap: 0.5rem;

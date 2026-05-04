@@ -127,8 +127,8 @@ const Home = () => {
 
       {!loading && !error && <Slider slides={slides} />}
 
-      <main className="container" style={{ paddingTop: "6rem" }}>
-        <section className="latest-news">
+      <main className="container">
+        <section className="section latest-news">
           <div className="section-header-flex">
             <h2 className="section-title">Latest Technology</h2>
             <button className="btn btn-primary" onClick={toggleModal}>
@@ -139,8 +139,13 @@ const Home = () => {
           <Search searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
 
           <div className="news-grid">
-            {loading && <p>Loading news...</p>}
-            {error && <p style={{ color: "red" }}>{error}</p>}
+            {loading && (
+              <div className="loading-spinner-container">
+                <div className="spinner"></div>
+                <p>Loading the latest tech news...</p>
+              </div>
+            )}
+            {error && <p className="error-msg">{error}</p>}
             {!loading &&
               !error &&
               filteredNews.map((item) => (
@@ -159,7 +164,7 @@ const Home = () => {
           </div>
         </section>
 
-        <section className="newsletter-section">
+        <section className="section newsletter-section">
           <Form />
         </section>
       </main>

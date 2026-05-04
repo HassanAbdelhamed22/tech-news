@@ -45,9 +45,10 @@
 
 .nav-link {
   font-size: 0.95rem;
-  font-weight: 500;
-  color: var(--secondary);
+  font-weight: 600;
+  color: var(--fg-muted);
   position: relative;
+  text-decoration: none;
 }
 
 .nav-link::after {
@@ -62,7 +63,7 @@
 }
 
 .nav-link:hover {
-  color: var(--primary);
+  color: var(--fg-main);
 }
 
 .nav-link:hover::after {
