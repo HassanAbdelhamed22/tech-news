@@ -9,7 +9,7 @@ import brainImage from "../assets/brain_scans.png";
 const NewsDetails = () => {
   const { id } = useParams();
   const navigate = useNavigate();
-  const { news, updateReaction, toggleBookmark, isBookmarked, loading } = useNews();
+  const { news, updateReaction, toggleBookmark, isBookmarked, loading, getUserReaction } = useNews();
   const { user } = useAuth();
 
   const article = news.find((n) => String(n.id) === String(id));
@@ -30,14 +30,16 @@ const NewsDetails = () => {
     </div>
   );
 
+  const userAction = getUserReaction(user?.id, id);
+
   const handleLike = () => {
     if (!user) return toast.error("Please login to react");
-    updateReaction(id, "like");
+    updateReaction(user.id, id, "like");
   };
 
   const handleDislike = () => {
     if (!user) return toast.error("Please login to react");
-    updateReaction(id, "dislike");
+    updateReaction(user.id, id, "dislike");
   };
 
   const handleBookmark = () => {
@@ -117,14 +119,14 @@ const NewsDetails = () => {
               <h3>What do you think?</h3>
               <div className="reaction-buttons">
                 <button 
-                  className={`reaction-btn like ${article.userAction === 'like' ? 'active' : ''}`}
+                  className={`reaction-btn like ${userAction === 'like' ? 'active' : ''}`}
                   onClick={handleLike}
                 >
                   <ThumbsUp size={20} />
                   <span>{article.likes}</span>
                 </button>
                 <button 
-                  className={`reaction-btn dislike ${article.userAction === 'dislike' ? 'active' : ''}`}
+                  className={`reaction-btn dislike ${userAction === 'dislike' ? 'active' : ''}`}
                   onClick={handleDislike}
                 >
                   <ThumbsDown size={20} />

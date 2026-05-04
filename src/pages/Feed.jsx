@@ -7,7 +7,7 @@ import Card from "../components/Card/Card";
 import Search from "../components/Search/Search";
 
 const Feed = () => {
-  const { news, loading, error, updateReaction, toggleBookmark, isBookmarked } = useNews();
+  const { news, loading, error, updateReaction, toggleBookmark, isBookmarked, getUserReaction } = useNews();
   const [searchQuery, setSearchQuery] = useState("");
   const { user } = useAuth();
   const navigate = useNavigate();
@@ -27,7 +27,7 @@ const Feed = () => {
       navigate("/login");
       return;
     }
-    updateReaction(id, "like");
+    updateReaction(user.id, id, "like");
   };
 
   const handleDislike = (id) => {
@@ -36,7 +36,7 @@ const Feed = () => {
       navigate("/login");
       return;
     }
-    updateReaction(id, "dislike");
+    updateReaction(user.id, id, "dislike");
   };
 
   const filteredNews = useMemo(() => {
@@ -70,6 +70,7 @@ const Feed = () => {
           <Card
             key={item.id}
             {...item}
+            userAction={getUserReaction(user?.id, item.id)}
             onLike={handleLike}
             onDislike={handleDislike}
             onBookmark={handleBookmark}

@@ -48,7 +48,9 @@
       "imageUrl": "https://images.unsplash.com/photo-1633356122544-f134324a6cee",
       "author": "React Blog",
       "date": "Apr 27, 2026",
-      "category": "Frontend"
+      "category": "Frontend",
+      "likes": 1,
+      "dislikes": 0
     },
     {
       "id": "3",
@@ -169,7 +171,7 @@
       "image": "https://images.unsplash.com/photo-1599059285716-b217140c0ef3?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       "author": "Mazen Raafet",
       "id": "aiKsBLR_48w",
-      "likes": 1,
+      "likes": 2,
       "dislikes": 0
     },
     {
@@ -211,7 +213,7 @@
       "author": "AI Weekly",
       "date": "5/2/2026",
       "id": "HDzQ5ZdSdPY",
-      "likes": 3,
+      "likes": 4,
       "dislikes": 0
     },
     {
@@ -285,6 +287,26 @@
       "dislikes": 0,
       "date": "5/4/2026",
       "id": "I5AFAc6"
+    }
+  ],
+  "reactions": [
+    {
+      "userId": 1,
+      "newsId": "HDzQ5ZdSdPY",
+      "type": "like",
+      "id": 1
+    },
+    {
+      "userId": 1,
+      "newsId": "2",
+      "type": "like",
+      "id": 2
+    },
+    {
+      "userId": 1,
+      "newsId": "aiKsBLR_48w",
+      "type": "like",
+      "id": 3
     }
   ]
 }

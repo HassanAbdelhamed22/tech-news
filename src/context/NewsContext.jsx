@@ -8,29 +8,23 @@ export const NewsProvider = ({ children }) => {
   const [news, setNews] = useState([]);
   const [bookmarks, setBookmarks] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [reactions, setReactions] = useState([]);
   const [error, setError] = useState(null);
 
   const fetchNews = useCallback(async () => {
     try {
       setLoading(true);
-      
-      // Fetch news (mandatory)
-      const newsRes = await axios.get("http://localhost:5000/news");
+      const [newsRes, bookmarksRes, reactionsRes] = await Promise.all([
+        axios.get("http://localhost:5000/news"),
+        axios.get("http://localhost:5000/bookmarks"),
+        axios.get("http://localhost:5000/reactions").catch(() => ({ data: [] }))
+      ]);
       setNews(newsRes.data);
-
-      // Fetch bookmarks (optional/resilient)
-      try {
-        const bookmarksRes = await axios.get("http://localhost:5000/bookmarks");
-        setBookmarks(bookmarksRes.data);
-      } catch (err) {
-        console.warn("Bookmarks resource not found or inaccessible, defaulting to empty.", err);
-        setBookmarks([]);
-      }
-
+      setBookmarks(bookmarksRes.data);
+      setReactions(reactionsRes.data);
       setError(null);
     } catch (err) {
       setError("Failed to fetch news.");
-      console.error(err);
     } finally {
       setLoading(false);
     }
@@ -79,52 +73,54 @@ export const NewsProvider = ({ children }) => {
     }
   };
 
-  const updateReaction = async (id, type, userAction) => {
-    const item = news.find((n) => n.id === id);
+  const updateReaction = async (userId, newsId, type) => {
+    const item = news.find(n => String(n.id) === String(newsId));
     if (!item) return;
 
+    const existing = reactions.find(r => r.userId === userId && String(r.newsId) === String(newsId));
+    
     let newLikes = item.likes || 0;
     let newDislikes = item.dislikes || 0;
-    let newAction = userAction;
-
-    if (type === "like") {
-      if (item.userAction === "like") {
-        newLikes--;
-        newAction = null;
-      } else {
-        newLikes++;
-        if (item.userAction === "dislike") newDislikes--;
-        newAction = "like";
-      }
-    } else {
-      if (item.userAction === "dislike") {
-        newDislikes--;
-        newAction = null;
-      } else {
-        newDislikes++;
-        if (item.userAction === "like") newLikes--;
-        newAction = "dislike";
-      }
-    }
+    let reactionPromise = null;
 
     try {
-      // Optimistic Update
-      const oldNews = [...news];
-      setNews((prev) =>
-        prev.map((n) =>
-          n.id === id
-            ? { ...n, likes: newLikes, dislikes: newDislikes, userAction: newAction }
-            : n
-        )
-      );
+      if (existing) {
+        if (existing.type === type) {
+          // Toggle OFF
+          if (type === 'like') newLikes--; else newDislikes--;
+          reactionPromise = axios.delete(`http://localhost:5000/reactions/${existing.id}`);
+          setReactions(prev => prev.filter(r => r.id !== existing.id));
+        } else {
+          // Switch type
+          if (type === 'like') { newLikes++; newDislikes--; } else { newLikes--; newDislikes++; }
+          reactionPromise = axios.patch(`http://localhost:5000/reactions/${existing.id}`, { type });
+          setReactions(prev => prev.map(r => r.id === existing.id ? { ...r, type } : r));
+        }
+      } else {
+        // New reaction
+        if (type === 'like') newLikes++; else newDislikes++;
+        reactionPromise = axios.post("http://localhost:5000/reactions", { userId, newsId, type });
+        const res = await reactionPromise;
+        setReactions(prev => [...prev, res.data]);
+        reactionPromise = Promise.resolve(); // already done
+      }
 
-      await axios.patch(`http://localhost:5000/news/${id}`, {
-        likes: newLikes,
-        dislikes: newDislikes,
-      });
+      // Optimistic update for news counts
+      setNews(prev => prev.map(n => String(n.id) === String(newsId) ? { ...n, likes: newLikes, dislikes: newDislikes } : n));
+
+      await Promise.all([
+        reactionPromise,
+        axios.patch(`http://localhost:5000/news/${newsId}`, { likes: newLikes, dislikes: newDislikes })
+      ]);
     } catch (err) {
-      toast.error("Failed to update reaction.");
+      toast.error("Reaction failed to save");
+      fetchNews(); // Rollback
     }
+  };
+
+  const getUserReaction = (userId, newsId) => {
+    const reaction = reactions.find(r => r.userId === userId && String(r.newsId) === String(newsId));
+    return reaction ? reaction.type : null;
   };
 
   const deleteNews = async (id) => {
@@ -142,11 +138,13 @@ export const NewsProvider = ({ children }) => {
       value={{
         news,
         bookmarks,
+        reactions,
         loading,
         error,
         fetchNews,
         addNews,
         updateReaction,
+        getUserReaction,
         toggleBookmark,
         isBookmarked,
         deleteNews,
