@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router";
 import { useAuth } from "../../context/AuthContext";
 import "../../styles/Header.css";
+import { LogOut } from "lucide-react";
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -31,27 +32,34 @@ const Header = () => {
 
         <nav className="nav">
           <Link to="/" className="nav-link">
-            Latest
+            Feed
           </Link>
-          <a href="#" className="nav-link">
-            Reviews
-          </a>
-          <a href="#" className="nav-link">
-            AI
-          </a>
-          <a href="#" className="nav-link">
-            Gadgets
-          </a>
+          <Link to="/my-news" className="nav-link">
+            My News
+          </Link>
+          <Link to="/add-news" className="nav-link">
+            Add News
+          </Link>
+          <Link to="/profile" className="nav-link">
+            Profile
+          </Link>
         </nav>
 
         <div className="header-actions">
           {user ? (
             <div className="user-profile">
-              <span className="user-name">Hi, {user.fullName?.split(' ')[0] || user.email.split('@')[0]}</span>
-              <button className="btn btn-outline btn-sm" onClick={logout}>Logout</button>
+              <span className="user-name">
+                Hi, {user.fullName?.split(" ")[0] || user.email.split("@")[0]}
+              </span>
+              <button className="btn btn-outline btn-sm logout-btn" onClick={logout}>
+                <LogOut size={16} />
+                Logout
+              </button>
             </div>
           ) : (
-            <Link to="/login" className="btn btn-primary">Login</Link>
+            <Link to="/login" className="btn btn-primary">
+              Login
+            </Link>
           )}
         </div>
       </div>
@@ -60,4 +68,3 @@ const Header = () => {
 };
 
 export default Header;
-

@@ -123,7 +123,6 @@ const Home = () => {
 
   return (
     <div className="home-page">
-      <Header />
 
       {!loading && !error && <Slider slides={slides} />}
 
@@ -183,7 +182,6 @@ const Home = () => {
         />
       </Modal>
 
-      <Footer />
     </div>
   );
 };
