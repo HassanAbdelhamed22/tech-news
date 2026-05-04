@@ -7,10 +7,19 @@ import Card from "../components/Card/Card";
 import Search from "../components/Search/Search";
 
 const Feed = () => {
-  const { news, loading, error, updateReaction } = useNews();
+  const { news, loading, error, updateReaction, toggleBookmark, isBookmarked } = useNews();
   const [searchQuery, setSearchQuery] = useState("");
   const { user } = useAuth();
   const navigate = useNavigate();
+
+  const handleBookmark = (id) => {
+    if (!user) {
+      toast.error("Please login to bookmark");
+      navigate("/login");
+      return;
+    }
+    toggleBookmark(user.id, id);
+  };
 
   const handleLike = (id) => {
     if (!user) {
@@ -63,6 +72,8 @@ const Feed = () => {
             {...item}
             onLike={handleLike}
             onDislike={handleDislike}
+            onBookmark={handleBookmark}
+            isBookmarked={isBookmarked(user?.id, item.id)}
           />
         ))}
 

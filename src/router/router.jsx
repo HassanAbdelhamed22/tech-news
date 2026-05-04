@@ -14,11 +14,7 @@ import Feed from "../pages/Feed";
 const router = createBrowserRouter([
   {
     path: "/",
-    element: (
-      <ProtectedRoute>
-        <MainLayout />
-      </ProtectedRoute>
-    ),
+    element: <MainLayout />,
     errorElement: <ErrorPage />,
     children: [
       {
@@ -26,20 +22,32 @@ const router = createBrowserRouter([
         element: <Home />,
       },
       {
-        path:"feed",
-        element:<Feed />
+        path: "feed",
+        element: <Feed />,
       },
       {
         path: "my-news",
-        element: <MyNews />,
+        element: (
+          <ProtectedRoute>
+            <MyNews />
+          </ProtectedRoute>
+        ),
       },
       {
         path: "add-news",
-        element: <AddNews />,
+        element: (
+          <ProtectedRoute>
+            <AddNews />
+          </ProtectedRoute>
+        ),
       },
       {
         path: "profile",
-        element: <Profile />,
+        element: (
+          <ProtectedRoute>
+            <Profile />
+          </ProtectedRoute>
+        ),
       },
     ],
   },

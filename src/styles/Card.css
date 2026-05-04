@@ -189,3 +189,9 @@
   border-color: rgba(239, 68, 68, 0.2);
 }
 
+.bookmark-btn.active {
+  background: rgba(0, 112, 243, 0.1);
+  color: var(--accent);
+  border-color: rgba(0, 112, 243, 0.2);
+}
+

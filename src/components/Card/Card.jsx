@@ -2,6 +2,7 @@ import "../../styles/Card.css";
 import brainImage from "../../assets/brain_scans.png";
 import LikeButton from "./LikeButton";
 import DislikeButton from "./DislikeButton";
+import { Bookmark } from "lucide-react";
 
 const Card = ({
   id,
@@ -17,6 +18,8 @@ const Card = ({
   userAction,
   onLike,
   onDislike,
+  onBookmark,
+  isBookmarked,
 }) => {
   return (
     <div className="card">
@@ -41,6 +44,13 @@ const Card = ({
             onClick={() => onDislike(id)}
             isActive={userAction === "dislike"}
           />
+          <button 
+            className={`reaction-btn bookmark-btn ${isBookmarked ? 'active' : ''}`}
+            onClick={() => onBookmark(id)}
+            title={isBookmarked ? "Remove from bookmarks" : "Add to bookmarks"}
+          >
+            <Bookmark size={18} fill={isBookmarked ? "currentColor" : "none"} />
+          </button>
         </div>
       </div>
       <div className="card-image-container">

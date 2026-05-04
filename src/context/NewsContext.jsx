@@ -6,14 +6,27 @@ const NewsContext = createContext();
 
 export const NewsProvider = ({ children }) => {
   const [news, setNews] = useState([]);
+  const [bookmarks, setBookmarks] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
   const fetchNews = useCallback(async () => {
     try {
       setLoading(true);
-      const response = await axios.get("http://localhost:5000/news");
-      setNews(response.data);
+      
+      // Fetch news (mandatory)
+      const newsRes = await axios.get("http://localhost:5000/news");
+      setNews(newsRes.data);
+
+      // Fetch bookmarks (optional/resilient)
+      try {
+        const bookmarksRes = await axios.get("http://localhost:5000/bookmarks");
+        setBookmarks(bookmarksRes.data);
+      } catch (err) {
+        console.warn("Bookmarks resource not found or inaccessible, defaulting to empty.", err);
+        setBookmarks([]);
+      }
+
       setError(null);
     } catch (err) {
       setError("Failed to fetch news.");
@@ -26,6 +39,28 @@ export const NewsProvider = ({ children }) => {
   useEffect(() => {
     fetchNews();
   }, [fetchNews]);
+
+  const toggleBookmark = async (userId, newsId) => {
+    const existing = bookmarks.find(b => b.userId === userId && b.newsId === newsId);
+
+    try {
+      if (existing) {
+        await axios.delete(`http://localhost:5000/bookmarks/${existing.id}`);
+        setBookmarks(prev => prev.filter(b => b.id !== existing.id));
+        toast.success("Removed from bookmarks");
+      } else {
+        const res = await axios.post("http://localhost:5000/bookmarks", { userId, newsId });
+        setBookmarks(prev => [...prev, res.data]);
+        toast.success("Added to bookmarks");
+      }
+    } catch (err) {
+      toast.error("Failed to update bookmarks");
+    }
+  };
+
+  const isBookmarked = (userId, newsId) => {
+    return bookmarks.some(b => b.userId === userId && b.newsId === newsId);
+  };
 
   const addNews = async (newsItem) => {
     try {
@@ -106,11 +141,14 @@ export const NewsProvider = ({ children }) => {
     <NewsContext.Provider
       value={{
         news,
+        bookmarks,
         loading,
         error,
         fetchNews,
         addNews,
         updateReaction,
+        toggleBookmark,
+        isBookmarked,
         deleteNews,
       }}
     >

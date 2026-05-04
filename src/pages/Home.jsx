@@ -10,10 +10,19 @@ import AddNewsForm from "../components/Form/AddNewsForm";
 import Modal from "../components/Modal/Modal";
 
 const Home = () => {
-  const { news, loading, error, updateReaction, fetchNews } = useNews();
+  const { news, loading, error, updateReaction, toggleBookmark, isBookmarked } = useNews();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const { user } = useAuth();
   const navigate = useNavigate();
+
+  const handleBookmark = (id) => {
+    if (!user) {
+      toast.error("Please login to bookmark");
+      navigate("/login");
+      return;
+    }
+    toggleBookmark(user.id, id);
+  };
 
   const toggleModal = () => {
     if (!user) {
@@ -80,6 +89,8 @@ const Home = () => {
                 {...item}
                 onLike={handleLike}
                 onDislike={handleDislike}
+                onBookmark={handleBookmark}
+                isBookmarked={isBookmarked(user?.id, item.id)}
               />
             ))}
           </div>

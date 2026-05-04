@@ -6,6 +6,25 @@
       "fullName": "Hassan Abdelhamed",
       "joinedAt": "2026-05-04T16:11:44.590Z",
       "id": 1
+    },
+    {
+      "email": "mazen@gmail.com",
+      "password": "$2a$10$jWWzscDVE2T2Q5SOPPxfQuQT/O1IWYL.yhFIospy3H/hRkUbGB/Ty",
+      "fullName": "Mazen Raafet",
+      "joinedAt": "2026-05-04T18:15:45.736Z",
+      "id": 2
+    }
+  ],
+  "bookmarks": [
+    {
+      "id": 0,
+      "userId": 0,
+      "newsId": "test"
+    },
+    {
+      "userId": 1,
+      "newsId": "HDzQ5ZdSdPY",
+      "id": 1
     }
   ],
   "news": [
@@ -18,7 +37,7 @@
       "author": "Google AI Blog",
       "date": "Apr 28, 2026",
       "category": "AI",
-      "likes": 1,
+      "likes": 2,
       "dislikes": 0
     },
     {
@@ -70,7 +89,7 @@
       "author": "daily.dev",
       "date": "Apr 23, 2026",
       "category": "Opinion",
-      "likes": 1,
+      "likes": 0,
       "dislikes": 0
     },
     {
@@ -190,7 +209,7 @@
       "author": "AI Weekly",
       "date": "5/2/2026",
       "id": "HDzQ5ZdSdPY",
-      "likes": 1,
+      "likes": 3,
       "dislikes": 0
     },
     {
@@ -253,6 +272,5 @@
       "date": "5/2/2026",
       "id": "_BLQpjIrRuc"
     }
-  ],
-  "$schema": "./node_modules/json-server/schema.json"
+  ]
 }

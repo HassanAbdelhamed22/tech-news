@@ -22,48 +22,29 @@ const Register = () => {
   const { login } = useAuth();
   const navigate = useNavigate();
 
-  const getPasswordStrength = (password) => {
-    if (!password) return { label: "", color: "#e2e8f0", width: "0%" };
-    let score = 0;
-    if (password.length > 8) score++;
-    if (/[A-Z]/.test(password)) score++;
-    if (/[0-9]/.test(password)) score++;
-    if (/[^A-Za-z0-9]/.test(password)) score++;
-
-    switch (score) {
-      case 0:
-      case 1:
-        return { label: "Weak", color: "#ef4444", width: "25%" };
-      case 2:
-        return { label: "Fair", color: "#f59e0b", width: "50%" };
-      case 3:
-        return { label: "Good", color: "#10b981", width: "75%" };
-      case 4:
-        return { label: "Strong", color: "#059669", width: "100%" };
-      default:
-        return { label: "", color: "#e2e8f0", width: "0%" };
-    }
-  };
-
-  const strength = getPasswordStrength(formData.password);
-
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
-    
-    if (errors[name]) {
-      setErrors((prev) => ({ ...prev, [name]: "" }));
+
+    // Real-time validation
+    let error = validateField(name, value);
+    if (name === "confirmPassword" && value !== formData.password) {
+      error = "Passwords do not match";
     }
+    setErrors((prev) => ({ ...prev, [name]: error }));
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
+
     const newErrors = {
       fullName: validateField("fullName", formData.fullName),
       email: validateField("email", formData.email),
       password: validateField("password", formData.password),
-      confirmPassword: formData.password !== formData.confirmPassword ? "Passwords do not match" : "",
+      confirmPassword: 
+        formData.confirmPassword !== formData.password 
+          ? "Passwords do not match" 
+          : validateField("confirmPassword", formData.confirmPassword),
     };
 
     const hasErrors = Object.values(newErrors).some((err) => err !== "");
@@ -73,25 +54,24 @@ const Register = () => {
     }
 
     setIsSubmitting(true);
-
     try {
       const response = await axios.post("http://localhost:5000/register", {
-        fullName: formData.fullName,
         email: formData.email,
         password: formData.password,
+        fullName: formData.fullName,
         joinedAt: new Date().toISOString(),
       });
 
       const { user, accessToken } = response.data;
       login(user, accessToken);
-      toast.success("Welcome to TechNews!");
+      toast.success("Welcome to the community!");
       navigate("/");
     } catch (err) {
       console.error("Registration error:", err);
       if (err.response?.status === 400) {
-        toast.error("Email already exists or invalid data");
+        toast.error("Email already exists");
       } else {
-        toast.error("Something went wrong. Please try again.");
+        toast.error("Failed to register. Please try again.");
       }
     } finally {
       setIsSubmitting(false);
@@ -193,20 +173,25 @@ const Register = () => {
                   {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
                 </button>
               </div>
-              {formData.password && (
-                <div className="password-strength">
-                  <div className="strength-meter">
-                    <div 
-                      className="strength-bar" 
-                      style={{ width: strength.width, backgroundColor: strength.color }}
-                    ></div>
-                  </div>
-                  <span className="strength-text" style={{ color: strength.color }}>
-                    Password Strength: {strength.label}
-                  </span>
-                </div>
-              )}
               {errors.password && <span className="error-msg">{errors.password}</span>}
+            </div>
+
+            <div className="auth-group">
+              <label className="form-label">Confirm Password</label>
+              <div className="input-wrapper">
+                <span className="input-icon">
+                  <Lock size={18} />
+                </span>
+                <input
+                  type={showPassword ? "text" : "password"}
+                  name="confirmPassword"
+                  className="auth-input"
+                  value={formData.confirmPassword}
+                  placeholder="••••••••"
+                  onChange={handleChange}
+                />
+              </div>
+              {errors.confirmPassword && <span className="error-msg">{errors.confirmPassword}</span>}
             </div>
 
             <button type="submit" className="btn btn-primary btn-cta" disabled={isSubmitting} style={{marginTop: '1rem'}}>
