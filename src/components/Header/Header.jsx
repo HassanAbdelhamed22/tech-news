@@ -1,8 +1,11 @@
 import { useState, useEffect } from "react";
+import { Link } from "react-router";
+import { useAuth } from "../../context/AuthContext";
 import "../../styles/Header.css";
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
+  const { user, logout } = useAuth();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -22,14 +25,14 @@ const Header = () => {
   return (
     <header className={`header glass ${isScrolled ? "scrolled" : ""}`}>
       <div className="container header-container">
-        <a href="/" className="logo">
+        <Link to="/" className="logo">
           TECH<span>NEWS</span>
-        </a>
+        </Link>
 
         <nav className="nav">
-          <a href="#" className="nav-link">
+          <Link to="/" className="nav-link">
             Latest
-          </a>
+          </Link>
           <a href="#" className="nav-link">
             Reviews
           </a>
@@ -42,7 +45,14 @@ const Header = () => {
         </nav>
 
         <div className="header-actions">
-          <button className="btn btn-primary">Subscribe</button>
+          {user ? (
+            <div className="user-profile">
+              <span className="user-name">Hi, {user.fullName?.split(' ')[0] || user.email.split('@')[0]}</span>
+              <button className="btn btn-outline btn-sm" onClick={logout}>Logout</button>
+            </div>
+          ) : (
+            <Link to="/login" className="btn btn-primary">Login</Link>
+          )}
         </div>
       </div>
     </header>

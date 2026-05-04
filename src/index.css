@@ -1,41 +1,45 @@
 @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap');
 
 :root {
-  /* Colors */
+  /* Brand Colors - SaaS Light */
   --primary: #000000;
-  --primary-rgb: 0, 0, 0;
+  --primary-hover: #1f2937;
   --accent: #0070f3;
-  --accent-light: #3291ff;
-  --background: #ffffff;
-  --foreground: #000000;
+  --accent-secondary: #00c2ff;
   
-  --muted: #f4f4f5;
-  --muted-foreground: #71717a;
+  /* Light Mode Palette */
+  --bg-main: #ffffff;
+  --bg-card: #f9fafb;
+  --bg-input: #ffffff;
+  --fg-main: #000000;
+  --fg-muted: #4b5563;
+  --fg-subtle: #9ca3af;
   
+  /* UI Elements */
   --border: #e4e4e7;
-  --input: #e4e4e7;
-  --ring: #a1a1aa;
+  --border-focus: var(--accent);
+  --ring: rgba(0, 112, 243, 0.1);
   
-  /* HSL Colors for subtle shades */
-  --card: 0 0% 100%;
-  --card-foreground: 240 10% 3.9%;
+  /* Gradients */
+  --grad-premium: linear-gradient(135deg, #0070f3 0%, #00c2ff 100%);
+  --grad-surface: linear-gradient(to bottom right, rgba(0, 0, 0, 0.02), rgba(0, 0, 0, 0.05));
   
-  /* Spacing */
-  --radius-sm: 0.25rem;
+  /* Spacing & Radius */
+  --radius-sm: 0.375rem;
   --radius-md: 0.5rem;
-  --radius-lg: 1rem;
-  --radius-xl: 2rem;
+  --radius-lg: 0.75rem;
+  --radius-xl: 1.25rem;
+  --radius-2xl: 2rem;
   
   /* Typography */
   --font-sans: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   
-  /* Shadows */
-  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
-  --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-  --shadow-md: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
-  --shadow-lg: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+  /* Shadows & Glass */
+  --shadow-premium: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  --glass-bg: rgba(255, 255, 255, 0.8);
+  --glass-border: rgba(0, 0, 0, 0.05);
   
-  /* Transitions */
+  /* Animations */
   --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
@@ -51,8 +55,8 @@ html {
 
 body {
   font-family: var(--font-sans);
-  background-color: var(--background);
-  color: var(--foreground);
+  background-color: var(--bg-main);
+  color: var(--fg-main);
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
 }
@@ -61,12 +65,17 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: 700;
   line-height: 1.2;
   letter-spacing: -0.02em;
+  color: var(--fg-main);
 }
 
 a {
   text-decoration: none;
-  color: inherit;
+  color: var(--primary);
   transition: var(--transition);
+}
+
+a:hover {
+  color: var(--primary-hover);
 }
 
 ul {
@@ -85,46 +94,28 @@ input, textarea, select {
   font-family: inherit;
   outline: none;
   border: 1px solid var(--border);
+  background: var(--bg-input);
+  color: var(--fg-main);
   padding: 0.75rem 1rem;
   border-radius: var(--radius-md);
   transition: var(--transition);
 }
 
 input:focus, textarea:focus {
-  border-color: var(--accent);
-  box-shadow: 0 0 0 2px rgba(0, 112, 243, 0.1);
+  border-color: var(--border-focus);
+  box-shadow: 0 0 0 4px var(--ring);
 }
 
-.container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 1.5rem;
-}
-
-.section-title {
-  font-size: 2.5rem;
-  margin-bottom: 2rem;
-  position: relative;
-  display: inline-block;
-}
-
-.section-title::after {
-  content: '';
-  position: absolute;
-  bottom: -0.5rem;
-  left: 0;
-  width: 3rem;
-  height: 4px;
-  background: var(--accent);
-  border-radius: 2px;
+input::placeholder {
+  color: var(--fg-subtle);
 }
 
 /* Glassmorphism Utility */
 .glass {
-  background: rgba(255, 255, 255, 0.7);
+  background: var(--glass-bg);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  border: 1px solid var(--glass-border);
 }
 
 /* Buttons */
@@ -136,6 +127,7 @@ input:focus, textarea:focus {
   font-weight: 600;
   border-radius: var(--radius-md);
   gap: 0.5rem;
+  transition: var(--transition);
 }
 
 .btn-primary {
@@ -144,19 +136,23 @@ input:focus, textarea:focus {
 }
 
 .btn-primary:hover {
-  background: #333;
+  background: var(--primary-hover);
   transform: translateY(-1px);
-  box-shadow: var(--shadow-md);
+  box-shadow: 0 10px 15px -3px rgba(79, 70, 229, 0.4);
 }
 
-.btn-outline {
-  border: 2px solid var(--primary);
-  color: var(--primary);
+.btn-secondary {
+  background: var(--bg-input);
+  color: var(--fg-main);
+  border: 1px solid var(--border);
 }
 
-.btn-outline:hover {
-  background: var(--primary);
-  color: white;
+.btn-secondary:hover {
+  background: #2d3748;
+}
+
+.btn-full {
+  width: 100%;
 }
 
 /* Custom Utilities */

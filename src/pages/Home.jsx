@@ -1,5 +1,8 @@
 import { useState, useEffect, useCallback, useMemo } from "react";
 import axios from "axios";
+import toast from "react-hot-toast";
+import { useNavigate } from "react-router";
+import { useAuth } from "../context/AuthContext";
 import Header from "../components/Header/Header";
 import Slider from "../components/Slider/Slider";
 import Footer from "../components/Footer/Footer";
@@ -16,6 +19,8 @@ const Home = () => {
   const [error, setError] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
+  const { user } = useAuth();
+  const navigate = useNavigate();
 
   const fetchData = useCallback(async () => {
     try {
@@ -43,10 +48,20 @@ const Home = () => {
   }, [fetchData]);
 
   const toggleModal = () => {
+    if (!user) {
+      toast.error("Please login to share news");
+      navigate("/login");
+      return;
+    }
     setIsModalOpen((prev) => !prev);
   };
 
   const handleLike = (id) => {
+    if (!user) {
+      toast.error("Please login to react to news");
+      navigate("/login");
+      return;
+    }
     setNewsItems((prevItems) =>
       prevItems.map((item) => {
         if (item.id !== id) return item;
@@ -73,6 +88,11 @@ const Home = () => {
   };
 
   const handleDislike = (id) => {
+    if (!user) {
+      toast.error("Please login to react to news");
+      navigate("/login");
+      return;
+    }
     setNewsItems((prevItems) =>
       prevItems.map((item) => {
         if (item.id !== id) return item;
@@ -150,6 +170,7 @@ const Home = () => {
         title="Share Your Tech Story"
       >
         <AddNewsForm
+          user={user}
           refreshNews={() => {
             fetchData();
             toggleModal();

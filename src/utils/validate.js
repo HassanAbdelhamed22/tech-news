@@ -32,6 +32,21 @@ export const validateField = (name, value) => {
       if (!value.trim()) return "Please enter an author name";
       return "";
 
+    case "email":
+      if (!value.trim()) return "Email is required";
+      if (!/\S+@\S+\.\S+/.test(value)) return "Email is invalid";
+      return "";
+
+    case "password":
+      if (!value.trim()) return "Password is required";
+      if (value.length < 6) return "Password must be at least 6 characters";
+      return "";
+
+    case "fullName":
+      if (!value.trim()) return "Full name is required";
+      if (value.length < 3) return "Name is too short";
+      return "";
+
     default:
       return "";
   }

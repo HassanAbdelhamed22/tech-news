@@ -1,4 +1,13 @@
 {
+  "users": [
+    {
+      "email": "hassanabdelhamed09@gmail.com",
+      "password": "$2a$10$U2.xW0fIu9k1ySTqFsAt0eIHh0Iub1rT61cZInkYkZbkqpvU8uHoG",
+      "fullName": "Hassan Abdelhamed",
+      "joinedAt": "2026-05-04T16:11:44.590Z",
+      "id": 1
+    }
+  ],
   "news": [
     {
       "id": "1",
