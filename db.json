@@ -17,11 +17,6 @@
   ],
   "bookmarks": [
     {
-      "id": 0,
-      "userId": 0,
-      "newsId": "test"
-    },
-    {
       "userId": 1,
       "newsId": "HDzQ5ZdSdPY",
       "id": 1
@@ -271,6 +266,18 @@
       "author": "Hassan Abdelhamed",
       "date": "5/2/2026",
       "id": "_BLQpjIrRuc"
+    },
+    {
+      "title": "How GitHub Copilot is Changing Developer Workflows",
+      "category": "Future Tech",
+      "subtitle": "From autocomplete to pair programming",
+      "description": "AI-assisted coding tools are becoming essential. We explore how developers are adapting.",
+      "imageUrl": "https://images.unsplash.com/photo-1558494949-ef010cbdcc31",
+      "author": "Mazen Raafet",
+      "likes": 0,
+      "dislikes": 0,
+      "date": "5/4/2026",
+      "id": "I5AFAc6"
     }
   ]
 }

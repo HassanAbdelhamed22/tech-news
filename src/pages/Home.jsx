@@ -11,7 +11,6 @@ import Modal from "../components/Modal/Modal";
 
 const Home = () => {
   const { news, loading, error, updateReaction, toggleBookmark, isBookmarked } = useNews();
-  const [isModalOpen, setIsModalOpen] = useState(false);
   const { user } = useAuth();
   const navigate = useNavigate();
 
@@ -22,15 +21,6 @@ const Home = () => {
       return;
     }
     toggleBookmark(user.id, id);
-  };
-
-  const toggleModal = () => {
-    if (!user) {
-      toast.error("Please login to share news");
-      navigate("/login");
-      return;
-    }
-    setIsModalOpen((prev) => !prev);
   };
 
   const handleLike = (id) => {
@@ -70,7 +60,7 @@ const Home = () => {
               <h2 className="section-title">Trending Now</h2>
               <p className="section-subtitle">Most discussed and liked stories this week</p>
             </div>
-            <button className="btn btn-primary" onClick={toggleModal}>
+            <button className="btn btn-primary" onClick={() => navigate('/add-news')}>
               + Share News
             </button>
           </div>
@@ -106,20 +96,6 @@ const Home = () => {
           <Form />
         </section>
       </main>
-
-      <Modal
-        isOpen={isModalOpen}
-        onClose={toggleModal}
-        title="Share Your Tech Story"
-      >
-        <AddNewsForm
-          user={user}
-          refreshNews={() => {
-            fetchData();
-            toggleModal();
-          }}
-        />
-      </Modal>
     </div>
   );
 };

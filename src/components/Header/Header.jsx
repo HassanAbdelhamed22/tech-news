@@ -44,10 +44,6 @@ const Header = () => {
                 <PlusSquare size={18} />
                 <span>Add News</span>
               </NavLink>
-              <NavLink to="/profile" className="nav-link">
-                <Settings size={18} />
-                <span>Profile</span>
-              </NavLink>
             </>
           )}
         </nav>
