@@ -9,6 +9,7 @@ import AddNews from "../pages/AddNews";
 import Profile from "../pages/Profile";
 import NotFound from "../pages/NotFound";
 import ErrorPage from "../pages/ErrorPage";
+import Feed from "../pages/Feed";
 
 const router = createBrowserRouter([
   {
@@ -23,6 +24,10 @@ const router = createBrowserRouter([
       {
         index: true,
         element: <Home />,
+      },
+      {
+        path:"feed",
+        element:<Feed />
       },
       {
         path: "my-news",

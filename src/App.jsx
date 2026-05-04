@@ -4,13 +4,17 @@ import { AuthProvider } from "./context/AuthContext";
 import { Toaster } from "react-hot-toast";
 import "./index.css";
 
+import { NewsProvider } from "./context/NewsContext";
+
 const App = () => {
   return (
     <AuthProvider>
-      <Toaster position="top-right" />
-      <div className="App">
-        <RouterProvider router={router} />
-      </div>
+      <NewsProvider>
+        <Toaster position="top-right" />
+        <div className="App">
+          <RouterProvider router={router} />
+        </div>
+      </NewsProvider>
     </AuthProvider>
   );
 };

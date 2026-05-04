@@ -32,6 +32,9 @@ const Header = () => {
 
         <nav className="nav">
           <Link to="/" className="nav-link">
+            Home
+          </Link>
+          <Link to="/feed" className="nav-link">
             Feed
           </Link>
           <Link to="/my-news" className="nav-link">
@@ -40,9 +43,9 @@ const Header = () => {
           <Link to="/add-news" className="nav-link">
             Add News
           </Link>
-          <Link to="/profile" className="nav-link">
+          {/* <Link to="/profile" className="nav-link">
             Profile
-          </Link>
+          </Link> */}
         </nav>
 
         <div className="header-actions">
