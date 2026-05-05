@@ -6,6 +6,7 @@ import axios from "axios";
 import toast from "react-hot-toast";
 import { validateField } from "../utils/validate";
 import { Mail, Lock, Eye, EyeOff, Rocket, ShieldCheck } from "lucide-react";
+import API from "../services/api";
 
 const Login = () => {
   const [formData, setFormData] = useState({
@@ -44,7 +45,7 @@ const Login = () => {
     setIsSubmitting(true);
 
     try {
-      const response = await axios.post("http://localhost:5000/login", {
+      const response = await API.post("/login", {
         email: formData.email,
         password: formData.password,
       });
@@ -89,9 +90,18 @@ const Login = () => {
             <div className="tag-pill">#WebAssembly</div>
           </div>
 
-          <div className="trust-signal" style={{marginTop: '3rem', justifyContent: 'flex-start', color: 'rgba(255, 255, 255, 0.8)'}}>
+          <div
+            className="trust-signal"
+            style={{
+              marginTop: "3rem",
+              justifyContent: "flex-start",
+              color: "rgba(255, 255, 255, 0.8)",
+            }}
+          >
             <ShieldCheck size={20} />
-            <span style={{fontSize: '0.875rem', marginLeft: '0.5rem'}}>Your data is encrypted and secure.</span>
+            <span style={{ fontSize: "0.875rem", marginLeft: "0.5rem" }}>
+              Your data is encrypted and secure.
+            </span>
           </div>
         </div>
       </div>
@@ -172,8 +182,8 @@ const Login = () => {
                   placeholder="••••••••"
                   onChange={handleChange}
                 />
-                <button 
-                  type="button" 
+                <button
+                  type="button"
                   className="password-toggle"
                   onClick={() => setShowPassword(!showPassword)}
                 >

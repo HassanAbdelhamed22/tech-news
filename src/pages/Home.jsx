@@ -1,4 +1,4 @@
-import { useState, useMemo } from "react";
+import { useMemo } from "react";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router";
 import { useAuth } from "../context/AuthContext";
@@ -6,8 +6,6 @@ import { useNews } from "../context/NewsContext";
 import Slider from "../components/Slider/Slider";
 import Card from "../components/Card/Card";
 import Form from "../components/Form/Form";
-import AddNewsForm from "../components/Form/AddNewsForm";
-import Modal from "../components/Modal/Modal";
 
 const Home = () => {
   const { news, loading, error, updateReaction, toggleBookmark, isBookmarked, getUserReaction } = useNews();
