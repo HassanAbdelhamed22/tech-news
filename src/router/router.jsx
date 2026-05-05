@@ -1,16 +1,18 @@
+import { lazy } from "react";
 import { createBrowserRouter } from "react-router";
-import Home from "../pages/Home";
-import Login from "../pages/Login";
-import Register from "../pages/Register";
 import ProtectedRoute from "./ProtectedRoute";
 import MainLayout from "../layout/MainLayout";
-import MyNews from "../pages/MyNews";
-import AddNews from "../pages/AddNews";
-import Profile from "../pages/Profile";
-import NotFound from "../pages/NotFound";
-import ErrorPage from "../pages/ErrorPage";
-import NewsDetails from "../pages/NewsDetails";
-import Feed from "../pages/Feed";
+
+const Home = lazy(() => import("../pages/Home"));
+const Login = lazy(() => import("../pages/Login"));
+const Register = lazy(() => import("../pages/Register"));
+const MyNews = lazy(() => import("../pages/MyNews"));
+const AddNews = lazy(() => import("../pages/AddNews"));
+const Profile = lazy(() => import("../pages/Profile"));
+const NotFound = lazy(() => import("../pages/NotFound"));
+const ErrorPage = lazy(() => import("../pages/ErrorPage"));
+const NewsDetails = lazy(() => import("../pages/NewsDetails"));
+const Feed = lazy(() => import("../pages/Feed"));
 
 const router = createBrowserRouter([
   {
