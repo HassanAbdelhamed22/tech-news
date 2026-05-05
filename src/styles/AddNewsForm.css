@@ -156,3 +156,30 @@
   to { transform: rotate(360deg); }
 }
 
+/* Arabic Optional Section */
+.arabic-section {
+  border: 1.5px dashed #c7d2fe;
+  border-radius: var(--radius-lg);
+  padding: 1.5rem;
+  background: rgba(99, 102, 241, 0.02);
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.arabic-section-header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: #6366f1;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid #e0e7ff;
+}
+
+.arabic-section input,
+.arabic-section textarea {
+  font-family: 'Cairo', sans-serif;
+  font-size: 1rem;
+}

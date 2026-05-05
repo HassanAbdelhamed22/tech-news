@@ -1,12 +1,14 @@
 import { useMemo } from "react";
 import { useAuth } from "../context/AuthContext";
 import { useNews } from "../context/NewsContext";
+import { useTranslation } from "react-i18next";
 import Card from "../components/Card/Card";
 import { Bookmark, Inbox } from "lucide-react";
 
 const MyNews = () => {
   const { news, bookmarks, loading, error, updateReaction, toggleBookmark, isBookmarked } = useNews();
   const { user } = useAuth();
+  const { t } = useTranslation();
 
   const myBookmarks = useMemo(() => {
     if (!user) return [];
@@ -25,12 +27,12 @@ const MyNews = () => {
     <div className="bookmarks-page container section">
       <div className="section-header-flex">
         <div>
-          <h2 className="section-title">My Bookmarks</h2>
-          <p className="section-subtitle">Your curated list of must-read tech stories</p>
+          <h2 className="section-title">{t("myNews.title")}</h2>
+          <p className="section-subtitle">{t("myNews.subtitle")}</p>
         </div>
         <div className="stats-badge">
           <Bookmark size={16} />
-          <span>{myBookmarks.length} Articles</span>
+          <span>{myBookmarks.length} {t("myNews.articles")}</span>
         </div>
       </div>
 
@@ -38,7 +40,7 @@ const MyNews = () => {
         {loading && (
           <div className="loading-spinner-container">
             <div className="spinner"></div>
-            <p>Fetching your saved stories...</p>
+            <p>{t("myNews.loading")}</p>
           </div>
         )}
 
@@ -58,8 +60,8 @@ const MyNews = () => {
             <div className="empty-state-icon" style={{ marginBottom: '1.5rem', opacity: 0.2 }}>
               <Inbox size={80} />
             </div>
-            <h3>Your library is empty</h3>
-            <p>Articles you bookmark will appear here for quick access.</p>
+            <h3>{t("myNews.emptyTitle")}</h3>
+            <p>{t("myNews.emptyMessage")}</p>
           </div>
         )}
       </div>

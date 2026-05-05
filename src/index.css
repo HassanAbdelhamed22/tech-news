@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Cairo:wght@300;400;500;600;700;800&display=swap');
 
 :root {
   --primary: #000000;
@@ -261,3 +261,22 @@ input::placeholder {
   font-size: 1.1rem;
 }
 
+/* =========================================
+   RTL (Arabic) Support
+   ========================================= */
+[dir="rtl"] body {
+  font-family: 'Cairo', 'Outfit', -apple-system, sans-serif;
+}
+
+[dir="rtl"] .section-header-flex {
+  flex-direction: row-reverse;
+}
+
+[dir="rtl"] .section-title,
+[dir="rtl"] .section-subtitle,
+[dir="rtl"] h1,
+[dir="rtl"] h2,
+[dir="rtl"] h3,
+[dir="rtl"] p {
+  text-align: right;
+}

@@ -1,12 +1,15 @@
+import { useTranslation } from "react-i18next";
 import AddNewsForm from "../components/Form/AddNewsForm";
 
 export default function AddNews() {
+  const { t } = useTranslation();
+
   return (
     <div className="add-news-page container section">
       <div className="section-header-flex">
         <div>
-          <h2 className="section-title">Share Your Tech Story</h2>
-          <p className="section-subtitle">Contributing to the future of tech, one story at a time.</p>
+          <h2 className="section-title">{t("addNews.pageTitle")}</h2>
+          <p className="section-subtitle">{t("addNews.pageSubtitle")}</p>
         </div>
       </div>
       

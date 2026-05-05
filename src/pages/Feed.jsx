@@ -2,6 +2,7 @@ import { useState, useMemo } from "react";
 import { useAuth } from "../context/AuthContext";
 import { useNews } from "../context/NewsContext";
 import { useNavigate } from "react-router";
+import { useTranslation } from "react-i18next";
 import toast from "react-hot-toast";
 import Card from "../components/Card/Card";
 import Search from "../components/Search/Search";
@@ -11,10 +12,11 @@ const Feed = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const { user } = useAuth();
   const navigate = useNavigate();
+  const { t } = useTranslation();
 
   const handleBookmark = (id) => {
     if (!user) {
-      toast.error("Please login to bookmark");
+      toast.error(t("toast.loginToBookmark"));
       navigate("/login");
       return;
     }
@@ -23,7 +25,7 @@ const Feed = () => {
 
   const handleLike = (id) => {
     if (!user) {
-      toast.error("Please login to react");
+      toast.error(t("toast.loginToReact"));
       navigate("/login");
       return;
     }
@@ -32,7 +34,7 @@ const Feed = () => {
 
   const handleDislike = (id) => {
     if (!user) {
-      toast.error("Please login to react");
+      toast.error(t("toast.loginToReact"));
       navigate("/login");
       return;
     }
@@ -50,8 +52,8 @@ const Feed = () => {
   return (
     <div className="feed-page container section">
       <div className="section-header-flex">
-        <h2 className="section-title">The Tech Feed</h2>
-        <p className="section-subtitle">Stay updated with the latest in technology</p>
+        <h2 className="section-title">{t("feed.title")}</h2>
+        <p className="section-subtitle">{t("feed.subtitle")}</p>
       </div>
 
       <Search searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
@@ -60,7 +62,7 @@ const Feed = () => {
         {loading && (
           <div className="loading-spinner-container">
             <div className="spinner"></div>
-            <p>Gathering the latest tech stories...</p>
+            <p>{t("feed.loading")}</p>
           </div>
         )}
         
@@ -79,7 +81,7 @@ const Feed = () => {
         ))}
 
         {!loading && !error && filteredNews.length === 0 && (
-          <div className="no-results">No tech news matches your search.</div>
+          <div className="no-results">{t("feed.noResults")}</div>
         )}
       </div>
     </div>

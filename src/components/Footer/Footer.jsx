@@ -1,6 +1,9 @@
+import { useTranslation } from "react-i18next";
 import "../../styles/Footer.css";
 
 const Footer = () => {
+  const { t } = useTranslation();
+
   return (
     <footer className="footer">
       <div className="container">
@@ -10,91 +13,67 @@ const Footer = () => {
               TECHNEWS
             </a>
             <p className="footer-desc">
-              Stay ahead with the latest in technology, AI, and digital culture.
+              {t("footer.desc")}
             </p>
           </div>
 
           <div>
-            <h4 className="footer-title">Sections</h4>
+            <h4 className="footer-title">{t("footer.sectionsTitle")}</h4>
             <ul className="footer-links">
               <li>
-                <a href="#" className="footer-link">
-                  Latest News
-                </a>
+                <a href="#" className="footer-link">{t("footer.latestNews")}</a>
               </li>
               <li>
-                <a href="#" className="footer-link">
-                  Reviews
-                </a>
+                <a href="#" className="footer-link">{t("footer.reviews")}</a>
               </li>
               <li>
-                <a href="#" className="footer-link">
-                  AI & ML
-                </a>
+                <a href="#" className="footer-link">{t("footer.aiMl")}</a>
               </li>
               <li>
-                <a href="#" className="footer-link">
-                  Gadgets
-                </a>
+                <a href="#" className="footer-link">{t("footer.gadgets")}</a>
               </li>
             </ul>
           </div>
 
           <div>
-            <h4 className="footer-title">Company</h4>
+            <h4 className="footer-title">{t("footer.companyTitle")}</h4>
             <ul className="footer-links">
               <li>
-                <a href="#" className="footer-link">
-                  About Us
-                </a>
+                <a href="#" className="footer-link">{t("footer.about")}</a>
               </li>
               <li>
-                <a href="#" className="footer-link">
-                  Contact
-                </a>
+                <a href="#" className="footer-link">{t("footer.contact")}</a>
               </li>
               <li>
-                <a href="#" className="footer-link">
-                  Privacy Policy
-                </a>
+                <a href="#" className="footer-link">{t("footer.privacy")}</a>
               </li>
               <li>
-                <a href="#" className="footer-link">
-                  Terms of Service
-                </a>
+                <a href="#" className="footer-link">{t("footer.terms")}</a>
               </li>
             </ul>
           </div>
 
           <div>
-            <h4 className="footer-title">Follow Us</h4>
+            <h4 className="footer-title">{t("footer.followTitle")}</h4>
             <ul className="footer-links">
               <li>
-                <a href="#" className="footer-link">
-                  Twitter
-                </a>
+                <a href="#" className="footer-link">Twitter</a>
               </li>
               <li>
-                <a href="#" className="footer-link">
-                  LinkedIn
-                </a>
+                <a href="#" className="footer-link">LinkedIn</a>
               </li>
               <li>
-                <a href="#" className="footer-link">
-                  Instagram
-                </a>
+                <a href="#" className="footer-link">Instagram</a>
               </li>
               <li>
-                <a href="#" className="footer-link">
-                  GitHub
-                </a>
+                <a href="#" className="footer-link">GitHub</a>
               </li>
             </ul>
           </div>
         </div>
 
         <div className="footer-bottom">
-          <p className="copyright">© 2026 TechNews. All rights reserved.</p>
+          <p className="copyright">{t("footer.copyright")}</p>
         </div>
       </div>
     </footer>
@@ -102,4 +81,3 @@ const Footer = () => {
 };
 
 export default Footer;
-

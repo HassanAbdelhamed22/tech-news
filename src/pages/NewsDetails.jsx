@@ -1,6 +1,8 @@
 import { useParams, useNavigate } from "react-router";
 import { useNews } from "../context/NewsContext";
 import { useAuth } from "../context/AuthContext";
+import { useTranslation } from "react-i18next";
+import getLocalizedField from "../utils/getLocalizedField";
 import {
   ArrowLeft,
   Clock,
@@ -25,6 +27,8 @@ const NewsDetails = () => {
     getUserReaction,
   } = useNews();
   const { user } = useAuth();
+  const { t, i18n } = useTranslation();
+  const lang = i18n.language;
 
   const article = news.find((n) => String(n.id) === String(id));
 
@@ -32,16 +36,16 @@ const NewsDetails = () => {
     return (
       <div className="loading-state container">
         <div className="spinner"></div>
-        <p>Loading article...</p>
+        <p>{t("newsDetails.loading")}</p>
       </div>
     );
 
   if (!article)
     return (
       <div className="error-state container">
-        <h2>Article Not Found</h2>
+        <h2>{t("newsDetails.notFound")}</h2>
         <button className="btn btn-primary" onClick={() => navigate("/feed")}>
-          Back to Feed
+          {t("newsDetails.backToFeed")}
         </button>
       </div>
     );
@@ -49,24 +53,29 @@ const NewsDetails = () => {
   const userAction = getUserReaction(user?.id, id);
 
   const handleLike = () => {
-    if (!user) return toast.error("Please login to react");
+    if (!user) return toast.error(t("toast.loginToReact"));
     updateReaction(user.id, id, "like");
   };
 
   const handleDislike = () => {
-    if (!user) return toast.error("Please login to react");
+    if (!user) return toast.error(t("toast.loginToReact"));
     updateReaction(user.id, id, "dislike");
   };
 
   const handleBookmark = () => {
-    if (!user) return toast.error("Please login to bookmark");
+    if (!user) return toast.error(t("toast.loginToBookmark"));
     toggleBookmark(user.id, id);
   };
 
   const handleShare = () => {
     navigator.clipboard.writeText(window.location.href);
-    toast.success("Link copied to clipboard!");
+    toast.success(t("newsDetails.linkCopied"));
   };
+
+  // Localized content with fallback to English
+  const title = getLocalizedField(article, "title", lang);
+  const subtitle = getLocalizedField(article, "subtitle", lang);
+  const description = getLocalizedField(article, "description", lang);
 
   return (
     <div className="details-page">
@@ -74,15 +83,15 @@ const NewsDetails = () => {
         {/* Navigation */}
         <button className="back-btn" onClick={() => navigate(-1)}>
           <ArrowLeft size={18} />
-          Back
+          {t("newsDetails.back")}
         </button>
 
         <article className="full-article">
           {/* Header */}
           <header className="article-header">
             <span className="article-category">{article.category}</span>
-            <h1 className="article-title">{article.title}</h1>
-            <p className="article-subtitle">{article.subtitle}</p>
+            <h1 className="article-title">{title}</h1>
+            <p className="article-subtitle">{subtitle}</p>
 
             <div className="article-meta-row">
               <div className="author-info">
@@ -118,14 +127,14 @@ const NewsDetails = () => {
           <div className="featured-image-container">
             <img
               src={article.imageUrl || brainImage}
-              alt={article.title}
+              alt={title}
               className="featured-image"
             />
           </div>
 
           {/* Content */}
           <div className="article-body">
-            {article.description.split("\n").map((paragraph, index) => (
+            {description.split("\n").map((paragraph, index) => (
               <p key={index}>{paragraph}</p>
             ))}
           </div>
@@ -133,7 +142,7 @@ const NewsDetails = () => {
           {/* Footer Reactions */}
           <footer className="article-footer">
             <div className="reaction-summary">
-              <h3>What do you think?</h3>
+              <h3>{t("newsDetails.whatDoYouThink")}</h3>
               <div className="reaction-buttons">
                 <button
                   className={`reaction-btn like ${userAction === "like" ? "active" : ""}`}

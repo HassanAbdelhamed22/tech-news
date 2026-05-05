@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router";
 import { useAuth } from "../context/AuthContext";
+import { useTranslation } from "react-i18next";
 import "../styles/Login.css";
-import axios from "axios";
 import toast from "react-hot-toast";
 import { validateField } from "../utils/validate";
 import {
@@ -30,6 +30,7 @@ const Register = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const { login } = useAuth();
   const navigate = useNavigate();
+  const { t } = useTranslation();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -37,7 +38,7 @@ const Register = () => {
 
     let error = validateField(name, value);
     if (name === "confirmPassword" && value !== formData.password) {
-      error = "Passwords do not match";
+      error = t("validation.passwordsMismatch");
     }
     setErrors((prev) => ({ ...prev, [name]: error }));
   };
@@ -51,7 +52,7 @@ const Register = () => {
       password: validateField("password", formData.password),
       confirmPassword:
         formData.confirmPassword !== formData.password
-          ? "Passwords do not match"
+          ? t("validation.passwordsMismatch")
           : validateField("confirmPassword", formData.confirmPassword),
     };
 
@@ -72,14 +73,14 @@ const Register = () => {
 
       const { user, accessToken } = response.data;
       login(user, accessToken);
-      toast.success("Welcome to the community!");
+      toast.success(t("toast.welcomeCommunity"));
       navigate("/");
     } catch (err) {
       console.error("Registration error:", err);
       if (err.response?.status === 400) {
-        toast.error("Email already exists");
+        toast.error(t("toast.emailExists"));
       } else {
-        toast.error("Failed to register. Please try again.");
+        toast.error(t("toast.registerFailed"));
       }
     } finally {
       setIsSubmitting(false);
@@ -95,10 +96,9 @@ const Register = () => {
             <Rocket size={32} strokeWidth={2.5} />
             TechNews
           </div>
-          <h1 className="visual-title">Start your journey in tech.</h1>
+          <h1 className="visual-title">{t("register.brandTitle")}</h1>
           <p className="visual-text">
-            Join thousands of developers sharing ideas and insights. Get curated
-            news, share your projects, and connect with peers.
+            {t("register.brandText")}
           </p>
 
           <div className="trending-tags">
@@ -118,7 +118,7 @@ const Register = () => {
           >
             <ShieldCheck size={20} />
             <span style={{ fontSize: "0.875rem", marginLeft: "0.5rem" }}>
-              We never share your data. Ever.
+              {t("register.secure")}
             </span>
           </div>
         </div>
@@ -128,13 +128,13 @@ const Register = () => {
       <div className="auth-form-container">
         <div className="auth-card">
           <div className="auth-header">
-            <h2>Create Account</h2>
-            <p>Create your account and start shaping the future of tech.</p>
+            <h2>{t("register.title")}</h2>
+            <p>{t("register.subtitle")}</p>
           </div>
 
           <form className="login-form" onSubmit={handleSubmit}>
             <div className="auth-group">
-              <label className="form-label">Full Name</label>
+              <label className="form-label">{t("register.fullNameLabel")}</label>
               <div className="input-wrapper">
                 <span className="input-icon">
                   <User size={18} />
@@ -144,7 +144,7 @@ const Register = () => {
                   name="fullName"
                   className="auth-input"
                   value={formData.fullName}
-                  placeholder="John Doe"
+                  placeholder={t("register.fullNamePlaceholder")}
                   onChange={handleChange}
                 />
               </div>
@@ -154,7 +154,7 @@ const Register = () => {
             </div>
 
             <div className="auth-group">
-              <label className="form-label">Email Address</label>
+              <label className="form-label">{t("register.emailLabel")}</label>
               <div className="input-wrapper">
                 <span className="input-icon">
                   <Mail size={18} />
@@ -164,7 +164,7 @@ const Register = () => {
                   name="email"
                   className="auth-input"
                   value={formData.email}
-                  placeholder="name@example.com"
+                  placeholder={t("register.emailPlaceholder")}
                   onChange={handleChange}
                 />
               </div>
@@ -174,7 +174,7 @@ const Register = () => {
             </div>
 
             <div className="auth-group">
-              <label className="form-label">Password</label>
+              <label className="form-label">{t("register.passwordLabel")}</label>
               <div className="input-wrapper">
                 <span className="input-icon">
                   <Lock size={18} />
@@ -184,7 +184,7 @@ const Register = () => {
                   name="password"
                   className="auth-input"
                   value={formData.password}
-                  placeholder="••••••••"
+                  placeholder={t("register.passwordPlaceholder")}
                   onChange={handleChange}
                 />
                 <button
@@ -201,7 +201,7 @@ const Register = () => {
             </div>
 
             <div className="auth-group">
-              <label className="form-label">Confirm Password</label>
+              <label className="form-label">{t("register.confirmPasswordLabel")}</label>
               <div className="input-wrapper">
                 <span className="input-icon">
                   <Lock size={18} />
@@ -211,7 +211,7 @@ const Register = () => {
                   name="confirmPassword"
                   className="auth-input"
                   value={formData.confirmPassword}
-                  placeholder="••••••••"
+                  placeholder={t("register.confirmPasswordPlaceholder")}
                   onChange={handleChange}
                 />
               </div>
@@ -229,23 +229,22 @@ const Register = () => {
               {isSubmitting ? (
                 <>
                   <div className="spinner"></div>
-                  <span>Creating Account...</span>
+                  <span>{t("register.submitting")}</span>
                 </>
               ) : (
-                "Join the Conversation"
+                t("register.submit")
               )}
             </button>
           </form>
 
           <p className="privacy-notice">
-            By creating an account, you agree to our Terms of Service and
-            Privacy Policy. We'll send you occasional product updates.
+            {t("register.privacy")}
           </p>
 
           <div className="auth-footer">
-            Already have an account?
+            {t("register.haveAccount")}
             <Link to="/login" className="auth-link">
-              Sign in instead
+              {t("register.signIn")}
             </Link>
           </div>
         </div>

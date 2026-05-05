@@ -1,9 +1,10 @@
 import { useState } from "react";
 import { useNavigate } from "react-router";
+import { useTranslation } from "react-i18next";
 import { useNews } from "../../context/NewsContext";
 import { useAuth } from "../../context/AuthContext";
 import { validateField } from "../../utils/validate";
-import { Type, Tag, FileText, ImageIcon, User, Send, X } from "lucide-react";
+import { Type, Tag, FileText, ImageIcon, User, Send, X, Globe } from "lucide-react";
 import "../../styles/AddNewsForm.css";
 import toast from "react-hot-toast";
 
@@ -11,6 +12,8 @@ const AddNewsForm = ({ onComplete }) => {
   const { addNews } = useNews();
   const { user } = useAuth();
   const navigate = useNavigate();
+  const { t } = useTranslation();
+
   const [formData, setFormData] = useState({
     title: "",
     category: "",
@@ -18,6 +21,10 @@ const AddNewsForm = ({ onComplete }) => {
     description: "",
     imageUrl: "",
     author: user?.fullName || "",
+    // Arabic optional fields
+    title_ar: "",
+    subtitle_ar: "",
+    description_ar: "",
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [errors, setErrors] = useState({});
@@ -40,14 +47,22 @@ const AddNewsForm = ({ onComplete }) => {
 
     if (hasErrors) {
       setErrors(newErrors);
-      toast.error("Please fix the errors before posting.");
+      toast.error(t("toast.fixErrors"));
       return;
     }
 
     setErrors({});
     setIsSubmitting(true);
 
-    const success = await addNews(formData);
+    // Only include Arabic fields if they have content
+    const payload = {
+      ...formData,
+      title_ar: formData.title_ar.trim() || undefined,
+      subtitle_ar: formData.subtitle_ar.trim() || undefined,
+      description_ar: formData.description_ar.trim() || undefined,
+    };
+
+    const success = await addNews(payload);
     setIsSubmitting(false);
 
     if (success) {
@@ -68,7 +83,7 @@ const AddNewsForm = ({ onComplete }) => {
   };
 
   const handleReset = () => {
-    if (window.confirm("Are you sure you want to clear the form?")) {
+    if (window.confirm(t("addNews.confirmClear"))) {
       setFormData({
         title: "",
         category: "",
@@ -76,6 +91,9 @@ const AddNewsForm = ({ onComplete }) => {
         description: "",
         imageUrl: "",
         author: user?.fullName || "",
+        title_ar: "",
+        subtitle_ar: "",
+        description_ar: "",
       });
       setErrors({});
     }
@@ -86,20 +104,20 @@ const AddNewsForm = ({ onComplete }) => {
       {/* Editor Section */}
       <div className="editor-pane glass">
         <div className="editor-header">
-          <div className="editor-badge">Draft</div>
+          <div className="editor-badge">{t("addNews.draft")}</div>
           <button className="reset-link" onClick={handleReset}>
-            <X size={14} /> Clear Form
+            <X size={14} /> {t("addNews.clearForm")}
           </button>
         </div>
 
         <form className="modern-form" onSubmit={handleSubmit}>
           <div className="form-group">
-            <label><Type size={16} /> Article Title</label>
+            <label><Type size={16} /> {t("addNews.titleLabel")}</label>
             <input
               type="text"
               name="title"
               value={formData.title}
-              placeholder="Give your story a powerful title..."
+              placeholder={t("addNews.titlePlaceholder")}
               onChange={handleChange}
               className={errors.title ? 'error' : ''}
             />
@@ -108,14 +126,14 @@ const AddNewsForm = ({ onComplete }) => {
 
           <div className="form-grid">
             <div className="form-group">
-              <label><Tag size={16} /> Category</label>
+              <label><Tag size={16} /> {t("addNews.categoryLabel")}</label>
               <select
                 name="category"
                 onChange={handleChange}
                 value={formData.category}
                 className={errors.category ? 'error' : ''}
               >
-                <option value="">Select Category</option>
+                <option value="">{t("addNews.categoryPlaceholder")}</option>
                 <option>AI</option>
                 <option>Web Dev</option>
                 <option>Gadgets</option>
@@ -126,12 +144,12 @@ const AddNewsForm = ({ onComplete }) => {
             </div>
 
             <div className="form-group">
-              <label><User size={16} /> Author Display</label>
+              <label><User size={16} /> {t("addNews.authorLabel")}</label>
               <input
                 type="text"
                 name="author"
                 value={formData.author}
-                placeholder="Author Name"
+                placeholder={t("addNews.authorPlaceholder")}
                 onChange={handleChange}
                 className={errors.author ? 'error' : ''}
               />
@@ -139,12 +157,12 @@ const AddNewsForm = ({ onComplete }) => {
           </div>
 
           <div className="form-group">
-            <label><FileText size={16} /> Subtitle</label>
+            <label><FileText size={16} /> {t("addNews.subtitleLabel")}</label>
             <input
               type="text"
               name="subtitle"
               value={formData.subtitle}
-              placeholder="What is this article about in one sentence?"
+              placeholder={t("addNews.subtitlePlaceholder")}
               onChange={handleChange}
               className={errors.subtitle ? 'error' : ''}
             />
@@ -152,12 +170,12 @@ const AddNewsForm = ({ onComplete }) => {
           </div>
 
           <div className="form-group">
-            <label><ImageIcon size={16} /> Cover Image URL</label>
+            <label><ImageIcon size={16} /> {t("addNews.imageLabel")}</label>
             <input
               type="url"
               name="imageUrl"
               value={formData.imageUrl}
-              placeholder="Paste Unsplash or direct image link..."
+              placeholder={t("addNews.imagePlaceholder")}
               onChange={handleChange}
               className={errors.imageUrl ? 'error' : ''}
             />
@@ -165,16 +183,60 @@ const AddNewsForm = ({ onComplete }) => {
           </div>
 
           <div className="form-group">
-            <label><FileText size={16} /> Full Description</label>
+            <label><FileText size={16} /> {t("addNews.descriptionLabel")}</label>
             <textarea
               rows="6"
               name="description"
               value={formData.description}
-              placeholder="Tell the full story here..."
+              placeholder={t("addNews.descriptionPlaceholder")}
               onChange={handleChange}
               className={errors.description ? 'error' : ''}
             ></textarea>
             {errors.description && <span className="error-hint">{errors.description}</span>}
+          </div>
+
+          {/* Arabic Optional Fields */}
+          <div className="arabic-section">
+            <div className="arabic-section-header">
+              <Globe size={16} />
+              <span>{t("addNews.arabicSectionTitle")}</span>
+            </div>
+
+            <div className="form-group">
+              <label>{t("addNews.titleArLabel")}</label>
+              <input
+                type="text"
+                name="title_ar"
+                value={formData.title_ar}
+                placeholder={t("addNews.titleArPlaceholder")}
+                onChange={handleChange}
+                dir="rtl"
+              />
+            </div>
+
+            <div className="form-group">
+              <label>{t("addNews.subtitleArLabel")}</label>
+              <input
+                type="text"
+                name="subtitle_ar"
+                value={formData.subtitle_ar}
+                placeholder={t("addNews.subtitleArPlaceholder")}
+                onChange={handleChange}
+                dir="rtl"
+              />
+            </div>
+
+            <div className="form-group">
+              <label>{t("addNews.descriptionArLabel")}</label>
+              <textarea
+                rows="6"
+                name="description_ar"
+                value={formData.description_ar}
+                placeholder={t("addNews.descriptionArPlaceholder")}
+                onChange={handleChange}
+                dir="rtl"
+              ></textarea>
+            </div>
           </div>
 
           <button
@@ -187,7 +249,7 @@ const AddNewsForm = ({ onComplete }) => {
             ) : (
               <>
                 <Send size={18} />
-                Publish to Feed
+                {t("addNews.publish")}
               </>
             )}
           </button>
@@ -198,4 +260,3 @@ const AddNewsForm = ({ onComplete }) => {
 };
 
 export default AddNewsForm;
-

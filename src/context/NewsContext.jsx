@@ -9,6 +9,7 @@ import {
 } from "react";
 import API from "../services/api";
 import toast from "react-hot-toast";
+import i18n from "../i18n/index.js";
 
 const NewsContext = createContext();
 
@@ -64,20 +65,23 @@ export const NewsProvider = ({ children }) => {
 
   const toggleBookmark = useCallback(
     async (userId, newsId) => {
-      const existing = isBookmarked(userId, newsId);
+      // find() returns the actual bookmark object (with .id), not just a boolean
+      const existing = bookmarks.find(
+        (b) => b.userId === userId && String(b.newsId) === String(newsId)
+      );
 
       try {
         if (existing) {
           await API.delete(`/bookmarks/${existing.id}`);
           setBookmarks((prev) => prev.filter((b) => b.id !== existing.id));
-          toast.success("Removed from bookmarks");
+          toast.success(i18n.t("toast.bookmarkRemoved"));
         } else {
           const res = await API.post("/bookmarks", { userId, newsId });
           setBookmarks((prev) => [...prev, res.data]);
-          toast.success("Added to bookmarks");
+          toast.success(i18n.t("toast.bookmarkAdded"));
         }
       } catch (err) {
-        toast.error("Failed to update bookmarks");
+        toast.error(i18n.t("toast.bookmarkFailed"));
       }
     },
     [bookmarks],
@@ -99,10 +103,10 @@ export const NewsProvider = ({ children }) => {
         date: new Date().toLocaleDateString(),
       });
       setNews((prev) => [response.data, ...prev]);
-      toast.success("News shared successfully!");
+      toast.success(i18n.t("toast.newsShared"));
       return true;
     } catch (err) {
-      toast.error("Failed to share news.");
+      toast.error(i18n.t("toast.newsShareFailed"));
       return false;
     }
   }, []);
@@ -175,7 +179,7 @@ export const NewsProvider = ({ children }) => {
           }),
         ]);
       } catch (err) {
-        toast.error("Reaction failed to save");
+        toast.error(i18n.t("toast.reactionFailed"));
         fetchNews();
       }
     },
@@ -196,9 +200,9 @@ export const NewsProvider = ({ children }) => {
     try {
       await API.delete(`/news/${id}`);
       setNews((prev) => prev.filter((n) => n.id !== id));
-      toast.success("News deleted.");
+      toast.success(i18n.t("toast.newsDeleted"));
     } catch (err) {
-      toast.error("Failed to delete news.");
+      toast.error(i18n.t("toast.newsDeleteFailed"));
     }
   }, []);
 

@@ -1,0 +1,168 @@
+{
+  "slider": {
+    "readStory": "Read Full Story"
+  },
+  "header": {
+    "home": "Home",
+    "feed": "Feed",
+    "bookmarks": "Bookmarks",
+    "addNews": "Add News",
+    "login": "Login",
+    "signUp": "Sign Up",
+    "logout": "Logout",
+    "hi": "Hi"
+  },
+  "home": {
+    "trending": "Trending Now",
+    "trendingSubtitle": "Most discussed and liked stories this week",
+    "shareNews": "+ Share News",
+    "viewFeed": "View Full News Feed",
+    "loading": "Curating the best stories..."
+  },
+  "feed": {
+    "title": "The Tech Feed",
+    "subtitle": "Stay updated with the latest in technology",
+    "loading": "Gathering the latest tech stories...",
+    "noResults": "No tech news matches your search."
+  },
+  "myNews": {
+    "title": "My Bookmarks",
+    "subtitle": "Your curated list of must-read tech stories",
+    "articles": "Articles",
+    "loading": "Fetching your saved stories...",
+    "emptyTitle": "Your library is empty",
+    "emptyMessage": "Articles you bookmark will appear here for quick access."
+  },
+  "addNews": {
+    "pageTitle": "Share Your Tech Story",
+    "pageSubtitle": "Contributing to the future of tech, one story at a time.",
+    "draft": "Draft",
+    "clearForm": "Clear Form",
+    "confirmClear": "Are you sure you want to clear the form?",
+    "titleLabel": "Article Title",
+    "titlePlaceholder": "Give your story a powerful title...",
+    "titleArLabel": "Article Title (Arabic - Optional)",
+    "titleArPlaceholder": "عنوان المقال بالعربية (اختياري)...",
+    "categoryLabel": "Category",
+    "categoryPlaceholder": "Select Category",
+    "authorLabel": "Author Display",
+    "authorPlaceholder": "Author Name",
+    "subtitleLabel": "Subtitle",
+    "subtitlePlaceholder": "What is this article about in one sentence?",
+    "subtitleArLabel": "Subtitle (Arabic - Optional)",
+    "subtitleArPlaceholder": "العنوان الفرعي بالعربية (اختياري)...",
+    "imageLabel": "Cover Image URL",
+    "imagePlaceholder": "Paste Unsplash or direct image link...",
+    "descriptionLabel": "Full Description",
+    "descriptionPlaceholder": "Tell the full story here...",
+    "descriptionArLabel": "Full Description (Arabic - Optional)",
+    "descriptionArPlaceholder": "الوصف الكامل بالعربية (اختياري)...",
+    "publish": "Publish to Feed",
+    "publishing": "Publishing...",
+    "arabicSectionTitle": "Arabic Content (Optional)"
+  },
+  "login": {
+    "brandTitle": "Join the conversation shaping the future.",
+    "brandText": "The world's most innovative engineers and designers share their insights here. Don't just watch the future happen—be part of it.",
+    "secure": "Your data is encrypted and secure.",
+    "title": "Welcome Back",
+    "subtitle": "Welcome back. Let's get you into the conversation.",
+    "continueGoogle": "Continue with Google",
+    "orEmail": "or sign in with email",
+    "emailLabel": "Email Address",
+    "emailPlaceholder": "name@example.com",
+    "passwordLabel": "Password",
+    "rememberMe": "Remember me",
+    "forgotPassword": "Forgot password?",
+    "submit": "Enter TechNews",
+    "submitting": "Authenticating...",
+    "noAccount": "Don't have an account?",
+    "createAccount": "Create one now"
+  },
+  "register": {
+    "brandTitle": "Start your journey in tech.",
+    "brandText": "Join thousands of developers sharing ideas and insights. Get curated news, share your projects, and connect with peers.",
+    "secure": "We never share your data. Ever.",
+    "title": "Create Account",
+    "subtitle": "Create your account and start shaping the future of tech.",
+    "fullNameLabel": "Full Name",
+    "fullNamePlaceholder": "John Doe",
+    "emailLabel": "Email Address",
+    "emailPlaceholder": "name@example.com",
+    "passwordLabel": "Password",
+    "passwordPlaceholder": "Min 6 characters",
+    "confirmPasswordLabel": "Confirm Password",
+    "confirmPasswordPlaceholder": "Re-enter password",
+    "submit": "Join the Conversation",
+    "submitting": "Creating Account...",
+    "privacy": "By creating an account, you agree to our Terms of Service and Privacy Policy. We'll send you occasional product updates.",
+    "haveAccount": "Already have an account?",
+    "signIn": "Sign in instead"
+  },
+  "newsDetails": {
+    "back": "Back",
+    "loading": "Loading article...",
+    "notFound": "Article Not Found",
+    "backToFeed": "Back to Feed",
+    "whatDoYouThink": "What do you think?",
+    "linkCopied": "Link copied to clipboard!"
+  },
+  "notFound": {
+    "title": "Page Not Found",
+    "message": "Oops! The page you're looking for doesn't exist or has been moved to a new destination in the tech universe.",
+    "backHome": "Back to Home",
+    "goBack": "Go Back"
+  },
+  "errorPage": {
+    "title": "Something went wrong",
+    "message": "An unexpected error occurred. Our engineers have been notified and are working to restore the feed.",
+    "errorDetails": "Error Details:",
+    "tryAgain": "Try Again",
+    "goHome": "Go to Home"
+  },
+  "search": {
+    "placeholder": "Search articles by title..."
+  },
+  "card": {
+    "by": "By",
+    "addBookmark": "Add to bookmarks",
+    "removeBookmark": "Remove from bookmarks"
+  },
+  "toast": {
+    "loginToBookmark": "Please login to bookmark",
+    "loginToReact": "Please login to react",
+    "welcomeBack": "Welcome back, {{name}}!",
+    "welcomeCommunity": "Welcome to the community!",
+    "invalidCredentials": "Invalid email or password",
+    "serverError": "Something went wrong. Please try again.",
+    "emailExists": "Email already exists",
+    "registerFailed": "Failed to register. Please try again.",
+    "fixErrors": "Please fix the errors before posting.",
+    "bookmarkAdded": "Added to bookmarks",
+    "bookmarkRemoved": "Removed from bookmarks",
+    "bookmarkFailed": "Failed to update bookmarks",
+    "newsShared": "News shared successfully!",
+    "newsShareFailed": "Failed to share news.",
+    "reactionFailed": "Reaction failed to save",
+    "newsDeleted": "News deleted.",
+    "newsDeleteFailed": "Failed to delete news."
+  },
+  "validation": {
+    "passwordsMismatch": "Passwords do not match"
+  },
+  "footer": {
+    "desc": "Stay ahead with the latest in technology, AI, and digital culture.",
+    "sectionsTitle": "Sections",
+    "latestNews": "Latest News",
+    "reviews": "Reviews",
+    "aiMl": "AI & ML",
+    "gadgets": "Gadgets",
+    "companyTitle": "Company",
+    "about": "About Us",
+    "contact": "Contact",
+    "privacy": "Privacy Policy",
+    "terms": "Terms of Service",
+    "followTitle": "Follow Us",
+    "copyright": "© 2026 TechNews. All rights reserved."
+  }
+}
