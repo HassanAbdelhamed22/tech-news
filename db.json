@@ -1,4 +1,32 @@
 {
+  "users": [
+    {
+      "email": "hassanabdelhamed09@gmail.com",
+      "password": "$2a$10$U2.xW0fIu9k1ySTqFsAt0eIHh0Iub1rT61cZInkYkZbkqpvU8uHoG",
+      "fullName": "Hassan Abdelhamed",
+      "joinedAt": "2026-05-04T16:11:44.590Z",
+      "id": 1
+    },
+    {
+      "email": "mazen@gmail.com",
+      "password": "$2a$10$jWWzscDVE2T2Q5SOPPxfQuQT/O1IWYL.yhFIospy3H/hRkUbGB/Ty",
+      "fullName": "Mazen Raafet",
+      "joinedAt": "2026-05-04T18:15:45.736Z",
+      "id": 2
+    }
+  ],
+  "bookmarks": [
+    {
+      "userId": 1,
+      "newsId": "HDzQ5ZdSdPY",
+      "id": 1
+    },
+    {
+      "userId": 2,
+      "newsId": "aiKsBLR_48w",
+      "id": 2
+    }
+  ],
   "news": [
     {
       "id": "1",
@@ -8,7 +36,9 @@
       "imageUrl": "https://images.unsplash.com/photo-1573804633927-bfcbcd909acd?q=80&w=1227&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       "author": "Google AI Blog",
       "date": "Apr 28, 2026",
-      "category": "AI"
+      "category": "AI",
+      "likes": 2,
+      "dislikes": 0
     },
     {
       "id": "2",
@@ -18,7 +48,9 @@
       "imageUrl": "https://images.unsplash.com/photo-1633356122544-f134324a6cee",
       "author": "React Blog",
       "date": "Apr 27, 2026",
-      "category": "Frontend"
+      "category": "Frontend",
+      "likes": 0,
+      "dislikes": 0
     },
     {
       "id": "3",
@@ -58,7 +90,9 @@
       "imageUrl": "https://images.unsplash.com/photo-1618477247222-acbdb0e159b3",
       "author": "daily.dev",
       "date": "Apr 23, 2026",
-      "category": "Opinion"
+      "category": "Opinion",
+      "likes": 0,
+      "dislikes": 0
     },
     {
       "id": "7",
@@ -136,7 +170,9 @@
       "description": "Overview\nImagine building an amazing software product that no one can use, or even knows exists simply because it lacks proper documentation. Unfortunately, there are plenty of projects like that.\n\nYours doesn't have to be one of them.\n\nEarlier I published an article The Final 1% of Every GitHub Project: Sealing It Properly, where README was literally the first item on the list. Yes, it's that important, and that's why I decided to take a deeper look into this topic.\n\nIf you're a software engineer, knowing how to write proper documentation is one of the most critical skills you can have. There's no excuse for skipping it or considering it as optional.\n\nYes, coding is way more fun. But coming back later and trying to understand what you did (and why you did it) without any reference is far less fun than writing a few clear notes upfront.\n\nAnd if you want your work to be recognized, used, contributed to, or even starred, documentation isn't optional. It's one of the first things people see, and often the reason they stay... or leave.\n\nBut this article isn't about documentation as a whole, that's a massive topic and it deserves to be broken down. There are many different types of documentation, each serving a different purpose.\n\nHere, we're focusing on the most essential one: the README.",
       "image": "https://images.unsplash.com/photo-1599059285716-b217140c0ef3?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       "author": "Mazen Raafet",
-      "id": "aiKsBLR_48w"
+      "id": "aiKsBLR_48w",
+      "likes": 2,
+      "dislikes": 0
     },
     {
       "id": "fx85dDSifuM",
@@ -176,7 +212,9 @@
       "imageUrl": "https://images.unsplash.com/photo-1677442136019-21780ecad995",
       "author": "AI Weekly",
       "date": "5/2/2026",
-      "id": "HDzQ5ZdSdPY"
+      "id": "HDzQ5ZdSdPY",
+      "likes": 4,
+      "dislikes": 0
     },
     {
       "title": "Tailwind CSS vs Traditional CSS: The 2026 Verdict",
@@ -237,7 +275,32 @@
       "author": "Hassan Abdelhamed",
       "date": "5/2/2026",
       "id": "_BLQpjIrRuc"
+    },
+    {
+      "title": "How GitHub Copilot is Changing Developer Workflows",
+      "category": "Future Tech",
+      "subtitle": "From autocomplete to pair programming",
+      "description": "AI-assisted coding tools are becoming essential. We explore how developers are adapting.",
+      "imageUrl": "https://images.unsplash.com/photo-1558494949-ef010cbdcc31",
+      "author": "Mazen Raafet",
+      "likes": 0,
+      "dislikes": 0,
+      "date": "5/4/2026",
+      "id": "I5AFAc6"
     }
   ],
-  "$schema": "./node_modules/json-server/schema.json"
+  "reactions": [
+    {
+      "userId": 1,
+      "newsId": "HDzQ5ZdSdPY",
+      "type": "like",
+      "id": 1
+    },
+    {
+      "userId": 1,
+      "newsId": "aiKsBLR_48w",
+      "type": "like",
+      "id": 3
+    }
+  ]
 }

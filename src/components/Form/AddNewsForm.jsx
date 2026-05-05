@@ -1,17 +1,23 @@
 import { useState } from "react";
-import "../../styles/AddNewsForm.css";
-import axios from "axios";
-import toast from "react-hot-toast";
+import { useNavigate } from "react-router";
+import { useNews } from "../../context/NewsContext";
+import { useAuth } from "../../context/AuthContext";
 import { validateField } from "../../utils/validate";
+import { Type, Tag, FileText, ImageIcon, User, Send, X } from "lucide-react";
+import "../../styles/AddNewsForm.css";
+import toast from "react-hot-toast";
 
-const AddNewsForm = ({ refreshNews }) => {
+const AddNewsForm = ({ onComplete }) => {
+  const { addNews } = useNews();
+  const { user } = useAuth();
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     title: "",
     category: "",
     subtitle: "",
     description: "",
     imageUrl: "",
-    author: "",
+    author: user?.fullName || "",
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [errors, setErrors] = useState({});
@@ -21,7 +27,6 @@ const AddNewsForm = ({ refreshNews }) => {
 
     const { title, category, subtitle, description, imageUrl, author } = formData;
 
-    // Validate all fields
     const newErrors = {
       title: validateField("title", title),
       category: validateField("category", category),
@@ -31,164 +36,163 @@ const AddNewsForm = ({ refreshNews }) => {
       author: validateField("author", author),
     };
 
-    // Check if there are any error messages
     const hasErrors = Object.values(newErrors).some((error) => error !== "");
 
     if (hasErrors) {
       setErrors(newErrors);
+      toast.error("Please fix the errors before posting.");
       return;
     }
 
     setErrors({});
     setIsSubmitting(true);
 
-    const news = {
-      ...formData,
-      date: new Date().toLocaleDateString(),
-    };
+    const success = await addNews(formData);
+    setIsSubmitting(false);
 
-    try {
-      await axios.post("http://localhost:5000/news", news);
-      refreshNews();
+    if (success) {
+      if (onComplete) {
+        onComplete();
+      } else {
+        navigate("/feed");
+      }
+    }
+  };
 
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+    if (errors[name]) {
+      setErrors((prev) => ({ ...prev, [name]: "" }));
+    }
+  };
+
+  const handleReset = () => {
+    if (window.confirm("Are you sure you want to clear the form?")) {
       setFormData({
         title: "",
         category: "",
         subtitle: "",
         description: "",
         imageUrl: "",
-        author: "",
+        author: user?.fullName || "",
       });
-      setIsSubmitting(false);
-      toast.success("News added successfully");
-    } catch (err) {
-      console.error("Submission error:", err);
-      toast.error(`Failed to add news: ${err.message || err}`);
-      setIsSubmitting(false);
+      setErrors({});
     }
   };
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    const error = validateField(name, value);
-
-    setFormData((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
-
-    setErrors((prev) => ({
-      ...prev,
-      [name]: error,
-    }));
-  };
-
   return (
-    <div className="add-news-container glass">
-      <h2 className="section-title">Share Your Story</h2>
-      <p className="add-news-desc">
-        Have a piece of news? Fill out the form below to share it with the
-        world.
-      </p>
+    <div className="creation-workspace">
+      {/* Editor Section */}
+      <div className="editor-pane glass">
+        <div className="editor-header">
+          <div className="editor-badge">Draft</div>
+          <button className="reset-link" onClick={handleReset}>
+            <X size={14} /> Clear Form
+          </button>
+        </div>
 
-      <form className="add-news-form" onSubmit={handleSubmit}>
-        <div className="form-row">
-          <div className="form-field">
-            <label>Article Title</label>
+        <form className="modern-form" onSubmit={handleSubmit}>
+          <div className="form-group">
+            <label><Type size={16} /> Article Title</label>
             <input
               type="text"
               name="title"
               value={formData.title}
-              placeholder="e.g. The Future of Quantum Computing"
+              placeholder="Give your story a powerful title..."
               onChange={handleChange}
+              className={errors.title ? 'error' : ''}
             />
-            {errors.title && <span className="error-text">{errors.title}</span>}
+            {errors.title && <span className="error-hint">{errors.title}</span>}
           </div>
-          <div className="form-field">
-            <label>Category</label>
-            <select
-              name="category"
+
+          <div className="form-grid">
+            <div className="form-group">
+              <label><Tag size={16} /> Category</label>
+              <select
+                name="category"
+                onChange={handleChange}
+                value={formData.category}
+                className={errors.category ? 'error' : ''}
+              >
+                <option value="">Select Category</option>
+                <option>AI</option>
+                <option>Web Dev</option>
+                <option>Gadgets</option>
+                <option>Future Tech</option>
+                <option>Programming</option>
+              </select>
+              {errors.category && <span className="error-hint">{errors.category}</span>}
+            </div>
+
+            <div className="form-group">
+              <label><User size={16} /> Author Display</label>
+              <input
+                type="text"
+                name="author"
+                value={formData.author}
+                placeholder="Author Name"
+                onChange={handleChange}
+                className={errors.author ? 'error' : ''}
+              />
+            </div>
+          </div>
+
+          <div className="form-group">
+            <label><FileText size={16} /> Subtitle</label>
+            <input
+              type="text"
+              name="subtitle"
+              value={formData.subtitle}
+              placeholder="What is this article about in one sentence?"
               onChange={handleChange}
-              value={formData.category}
-            >
-              <option value="">Select a category</option>
-              <option>AI</option>
-              <option>Web Dev</option>
-              <option>Gadgets</option>
-              <option>Future Tech</option>
-              <option>Programming</option>
-            </select>
-            {errors.category && (
-              <span className="error-text">{errors.category}</span>
-            )}
+              className={errors.subtitle ? 'error' : ''}
+            />
+            {errors.subtitle && <span className="error-hint">{errors.subtitle}</span>}
           </div>
-        </div>
 
-        <div className="form-field">
-          <label>Subtitle</label>
-          <input
-            type="text"
-            name="subtitle"
-            value={formData.subtitle}
-            placeholder="A brief catchphrase for your article"
-            onChange={handleChange}
-          />
-          {errors.subtitle && (
-            <span className="error-text">{errors.subtitle}</span>
-          )}
-        </div>
-
-        <div className="form-field">
-          <label>Description</label>
-          <textarea
-            rows="4"
-            name="description"
-            value={formData.description}
-            placeholder="Deep dive into the details..."
-            onChange={handleChange}
-          ></textarea>
-          {errors.description && (
-            <span className="error-text">{errors.description}</span>
-          )}
-        </div>
-
-        <div className="form-row">
-          <div className="form-field">
-            <label>Image URL</label>
+          <div className="form-group">
+            <label><ImageIcon size={16} /> Cover Image URL</label>
             <input
               type="url"
               name="imageUrl"
               value={formData.imageUrl}
-              placeholder="https://images.unsplash.com/..."
+              placeholder="Paste Unsplash or direct image link..."
               onChange={handleChange}
+              className={errors.imageUrl ? 'error' : ''}
             />
-            {errors.imageUrl && (
-              <span className="error-text">{errors.imageUrl}</span>
-            )}
+            {errors.imageUrl && <span className="error-hint">{errors.imageUrl}</span>}
           </div>
-          <div className="form-field">
-            <label>Author Name</label>
-            <input
-              type="text"
-              name="author"
-              value={formData.author}
-              placeholder="Your Name"
-              onChange={handleChange}
-            />
-            {errors.author && (
-              <span className="error-text">{errors.author}</span>
-            )}
-          </div>
-        </div>
 
-        <button
-          type="submit"
-          className="btn btn-primary btn-full"
-          disabled={isSubmitting}
-        >
-          {isSubmitting ? "Posting..." : "Post Article"}
-        </button>
-      </form>
+          <div className="form-group">
+            <label><FileText size={16} /> Full Description</label>
+            <textarea
+              rows="6"
+              name="description"
+              value={formData.description}
+              placeholder="Tell the full story here..."
+              onChange={handleChange}
+              className={errors.description ? 'error' : ''}
+            ></textarea>
+            {errors.description && <span className="error-hint">{errors.description}</span>}
+          </div>
+
+          <button
+            type="submit"
+            className="publish-btn"
+            disabled={isSubmitting}
+          >
+            {isSubmitting ? (
+              <span className="spinner-white"></span>
+            ) : (
+              <>
+                <Send size={18} />
+                Publish to Feed
+              </>
+            )}
+          </button>
+        </form>
+      </div>
     </div>
   );
 };

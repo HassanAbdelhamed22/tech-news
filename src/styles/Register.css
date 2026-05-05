@@ -1,0 +1,27 @@
+@import "./Login.css";
+
+/* Register specific variations if any */
+.register-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.25rem;
+}
+
+.privacy-notice {
+  margin-top: 1.5rem;
+  font-size: 0.75rem;
+  color: var(--fg-subtle);
+  text-align: center;
+  line-height: 1.5;
+}
+
+.trust-signal {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: 2rem;
+  font-size: 0.75rem;
+  color: var(--accent);
+  font-weight: 600;
+}
