@@ -1,13 +1,13 @@
 import { useMemo } from "react";
-import { useAuth } from "../context/AuthContext";
 import { useNews } from "../context/NewsContext";
 import { useTranslation } from "react-i18next";
 import Card from "../components/Card/Card";
 import { Bookmark, Inbox } from "lucide-react";
+import { useSelector } from "react-redux";
 
 const MyNews = () => {
   const { news, bookmarks, loading, error, updateReaction, toggleBookmark, isBookmarked } = useNews();
-  const { user } = useAuth();
+  const user = useSelector((state) => state.auth.user);
   const { t } = useTranslation();
 
   const myBookmarks = useMemo(() => {

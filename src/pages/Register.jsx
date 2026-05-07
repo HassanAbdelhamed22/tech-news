@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router";
-import { useAuth } from "../context/AuthContext";
 import { useTranslation } from "react-i18next";
 import "../styles/Login.css";
 import toast from "react-hot-toast";
@@ -17,6 +16,8 @@ import {
 
 import "../styles/Register.css";
 import API from "../services/api";
+import { useDispatch } from "react-redux";
+import { login } from "../store/slices/authSlice";
 
 const Register = () => {
   const [formData, setFormData] = useState({
@@ -28,7 +29,7 @@ const Register = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [errors, setErrors] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const { login } = useAuth();
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const { t } = useTranslation();
 
@@ -72,7 +73,7 @@ const Register = () => {
       });
 
       const { user, accessToken } = response.data;
-      login(user, accessToken);
+      dispatch(login({ user, token: accessToken }));
       toast.success(t("toast.welcomeCommunity"));
       navigate("/");
     } catch (err) {
@@ -97,9 +98,7 @@ const Register = () => {
             TechNews
           </div>
           <h1 className="visual-title">{t("register.brandTitle")}</h1>
-          <p className="visual-text">
-            {t("register.brandText")}
-          </p>
+          <p className="visual-text">{t("register.brandText")}</p>
 
           <div className="trending-tags">
             <div className="tag-pill">#AIAgenticWorkflows</div>
@@ -134,7 +133,9 @@ const Register = () => {
 
           <form className="login-form" onSubmit={handleSubmit}>
             <div className="auth-group">
-              <label className="form-label">{t("register.fullNameLabel")}</label>
+              <label className="form-label">
+                {t("register.fullNameLabel")}
+              </label>
               <div className="input-wrapper">
                 <span className="input-icon">
                   <User size={18} />
@@ -174,7 +175,9 @@ const Register = () => {
             </div>
 
             <div className="auth-group">
-              <label className="form-label">{t("register.passwordLabel")}</label>
+              <label className="form-label">
+                {t("register.passwordLabel")}
+              </label>
               <div className="input-wrapper">
                 <span className="input-icon">
                   <Lock size={18} />
@@ -201,7 +204,9 @@ const Register = () => {
             </div>
 
             <div className="auth-group">
-              <label className="form-label">{t("register.confirmPasswordLabel")}</label>
+              <label className="form-label">
+                {t("register.confirmPasswordLabel")}
+              </label>
               <div className="input-wrapper">
                 <span className="input-icon">
                   <Lock size={18} />
@@ -237,9 +242,7 @@ const Register = () => {
             </button>
           </form>
 
-          <p className="privacy-notice">
-            {t("register.privacy")}
-          </p>
+          <p className="privacy-notice">{t("register.privacy")}</p>
 
           <div className="auth-footer">
             {t("register.haveAccount")}

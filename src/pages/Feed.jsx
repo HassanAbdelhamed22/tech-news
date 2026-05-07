@@ -1,16 +1,16 @@
 import { useState, useMemo } from "react";
-import { useAuth } from "../context/AuthContext";
 import { useNews } from "../context/NewsContext";
 import { useNavigate } from "react-router";
 import { useTranslation } from "react-i18next";
 import toast from "react-hot-toast";
 import Card from "../components/Card/Card";
 import Search from "../components/Search/Search";
+import { useSelector } from "react-redux";
 
 const Feed = () => {
   const { news, loading, error, updateReaction, toggleBookmark, isBookmarked, getUserReaction } = useNews();
   const [searchQuery, setSearchQuery] = useState("");
-  const { user } = useAuth();
+  const user = useSelector((state) => state.auth.user);
   const navigate = useNavigate();
   const { t } = useTranslation();
 

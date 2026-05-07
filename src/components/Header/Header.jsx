@@ -1,13 +1,24 @@
 import { useState, useEffect } from "react";
 import { Link, NavLink } from "react-router";
-import { useAuth } from "../../context/AuthContext";
 import { useTranslation } from "react-i18next";
-import { LogOut, Home, Rss, User, PlusSquare, Settings, Bookmark, Languages } from "lucide-react";
+import {
+  LogOut,
+  Home,
+  Rss,
+  User,
+  PlusSquare,
+  Settings,
+  Bookmark,
+  Languages,
+} from "lucide-react";
 import "../../styles/Header.css";
+import { useDispatch, useSelector } from "react-redux";
+import { logout } from "../../store/slices/authSlice";
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
-  const { user, logout } = useAuth();
+  const dispatch = useDispatch();
+  const { user } = useSelector((state) => state.auth);
   const { t, i18n } = useTranslation();
 
   const isArabic = i18n.language === "ar";
@@ -41,7 +52,7 @@ const Header = () => {
             <Rss size={18} />
             <span>{t("header.feed")}</span>
           </NavLink>
-          
+
           {user && (
             <>
               <NavLink to="/my-news" className="nav-link">
@@ -72,15 +83,23 @@ const Header = () => {
               <span className="user-name">
                 {t("header.hi")}, {user.fullName?.split(" ")[0]}
               </span>
-              <button className="logout-btn" onClick={logout} title={t("header.logout")}>
+              <button
+                className="logout-btn"
+                onClick={() => dispatch(logout())}
+                title={t("header.logout")}
+              >
                 <LogOut size={18} />
                 <span>{t("header.logout")}</span>
               </button>
             </div>
           ) : (
             <div className="auth-btns">
-              <Link to="/login" className="nav-link">{t("header.login")}</Link>
-              <Link to="/register" className="btn btn-primary">{t("header.signUp")}</Link>
+              <Link to="/login" className="nav-link">
+                {t("header.login")}
+              </Link>
+              <Link to="/register" className="btn btn-primary">
+                {t("header.signUp")}
+              </Link>
             </div>
           )}
         </div>

@@ -13,6 +13,13 @@
       "fullName": "Mazen Raafet",
       "joinedAt": "2026-05-04T18:15:45.736Z",
       "id": 2
+    },
+    {
+      "email": "hassan@gmail.com",
+      "password": "$2a$10$GlRSiKQXsucmYuzRyJcrYecNUZXc.FWzpMIXzWKSDydOROUmiDsWW",
+      "fullName": "Hassan Mihammed",
+      "joinedAt": "2026-05-07T12:46:32.820Z",
+      "id": 3
     }
   ],
   "bookmarks": [
@@ -65,6 +72,33 @@
       "author": "OpenJS Foundation",
       "date": "Apr 26, 2026",
       "category": "Backend"
+    },
+    {
+      "title": "Next.js 16.2 Ships With Massive Performance Improvements",
+      "category": "Web Dev",
+      "subtitle": "The latest release introduces AI-ready tooling and much faster dev startup times.",
+      "description": "Next.js 16.2 delivers up to 400% faster startup speeds, improved rendering performance, and experimental AI debugging tools for developers. The update also introduces better Turbopack support and enhanced server-side rendering optimizations.",
+      "imageUrl": "https://images.unsplash.com/photo-1555066931-4365d14bab8c",
+      "author": "Hassan Abdelhamed",
+      "likes": 0,
+      "dislikes": 0,
+      "date": "5/7/2026",
+      "id": "F1Nnjkb"
+    },
+    {
+      "title": "React Developers Are Exploring TanStack Start",
+      "category": "Web Dev",
+      "subtitle": "Many developers are moving away from complex App Router workflows.",
+      "description": "TanStack Start is gaining popularity among React developers looking for simpler architectures and smaller bundles.",
+      "imageUrl": "https://images.unsplash.com/photo-1461749280684-dccba630e2f6",
+      "author": "Hassan Abdelhamed",
+      "title_ar": "مطورو React يتجهون إلى TanStack Start",
+      "subtitle_ar": "العديد من المطورين يبتعدون عن تعقيدات App Router.",
+      "description_ar": "يحظى TanStack Start بشعبية متزايدة بين مطوري React الباحثين عن بنية أبسط وحزم أصغر حجماً.",
+      "likes": 1,
+      "dislikes": 0,
+      "date": "5/7/2026",
+      "id": "vBY0i8J"
     }
   ],
   "reactions": [
@@ -73,6 +107,12 @@
       "newsId": "1",
       "type": "like",
       "id": 1
+    },
+    {
+      "userId": 1,
+      "newsId": "vBY0i8J",
+      "type": "like",
+      "id": 2
     }
   ]
 }

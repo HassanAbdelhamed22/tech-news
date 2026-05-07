@@ -1,6 +1,5 @@
 import { useParams, useNavigate } from "react-router";
 import { useNews } from "../context/NewsContext";
-import { useAuth } from "../context/AuthContext";
 import { useTranslation } from "react-i18next";
 import getLocalizedField from "../utils/getLocalizedField";
 import {
@@ -14,6 +13,7 @@ import {
 import toast from "react-hot-toast";
 import "../styles/NewsDetails.css";
 import brainImage from "../assets/brain_scans.png";
+import { useSelector } from "react-redux";
 
 const NewsDetails = () => {
   const { id } = useParams();
@@ -26,7 +26,7 @@ const NewsDetails = () => {
     loading,
     getUserReaction,
   } = useNews();
-  const { user } = useAuth();
+  const { user } = useSelector((state) => state.auth);
   const { t, i18n } = useTranslation();
   const lang = i18n.language;
 

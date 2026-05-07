@@ -11,6 +11,7 @@
     "server": "node server.cjs"
   },
   "dependencies": {
+    "@reduxjs/toolkit": "^2.11.2",
     "axios": "^1.15.2",
     "i18next": "^26.0.8",
     "i18next-browser-languagedetector": "^8.2.1",
@@ -19,6 +20,7 @@
     "react-dom": "^19.2.5",
     "react-hot-toast": "^2.6.0",
     "react-i18next": "^17.0.6",
+    "react-redux": "^9.2.0",
     "react-router": "^7.14.2",
     "uuid": "^14.0.0",
     "zod": "^4.4.1"

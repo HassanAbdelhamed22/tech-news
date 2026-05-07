@@ -2,15 +2,15 @@ import { useMemo } from "react";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router";
 import { useTranslation } from "react-i18next";
-import { useAuth } from "../context/AuthContext";
 import { useNews } from "../context/NewsContext";
 import Slider from "../components/Slider/Slider";
 import Card from "../components/Card/Card";
 import Form from "../components/Form/Form";
+import { useSelector } from "react-redux";
 
 const Home = () => {
   const { news, loading, error, updateReaction, toggleBookmark, isBookmarked, getUserReaction } = useNews();
-  const { user } = useAuth();
+  const user = useSelector((state) => state.auth.user);
   const navigate = useNavigate();
   const { t } = useTranslation();
 
