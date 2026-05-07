@@ -1,7 +1,7 @@
 .details-page {
   padding-top: 4rem;
   padding-bottom: 6rem;
-  background: #fdfdfd;
+  background: var(--bg-main);
 }
 
 .details-container {
@@ -14,7 +14,7 @@
   gap: 0.5rem;
   background: none;
   border: none;
-  color: #64748b;
+  color: var(--fg-muted);
   font-weight: 600;
   font-size: 0.875rem;
   cursor: pointer;
@@ -28,7 +28,7 @@
 }
 
 .full-article {
-  background: white;
+  background: var(--bg-main);
 }
 
 .article-category {
@@ -56,7 +56,7 @@
 .article-subtitle {
   font-size: 1.25rem;
   line-height: 1.6;
-  color: #64748b;
+  color: var(--fg-muted);
   margin-bottom: 2.5rem;
 }
 
@@ -65,8 +65,8 @@
   justify-content: space-between;
   align-items: center;
   padding: 1.5rem 0;
-  border-top: 1px solid #f1f5f9;
-  border-bottom: 1px solid #f1f5f9;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
   margin-bottom: 3rem;
 }
 
@@ -100,7 +100,7 @@
   display: flex;
   align-items: center;
   gap: 0.4rem;
-  color: #94a3b8;
+  color: var(--fg-subtle);
   font-size: 0.8125rem;
   margin-top: 0.2rem;
 }
@@ -111,22 +111,22 @@
 }
 
 .article-actions-top button {
-  background: none;
-  border: 1px solid #e2e8f0;
+  background: var(--bg-input);
+  border: 1px solid var(--border);
   width: 40px;
   height: 40px;
   display: flex;
   align-items: center;
   justify-content: center;
   border-radius: 50%;
-  color: #64748b;
+  color: var(--fg-muted);
   cursor: pointer;
   transition: all 0.3s ease;
 }
 
 .article-actions-top button:hover {
-  background: #f8fafc;
-  border-color: #cbd5e1;
+  background: var(--bg-card);
+  border-color: var(--border-focus);
   color: var(--fg-main);
 }
 
@@ -153,7 +153,7 @@
 .article-body {
   font-size: 1.15rem;
   line-height: 1.8;
-  color: #334155;
+  color: var(--fg-main);
 }
 
 .article-body p {
@@ -163,7 +163,7 @@
 .article-footer {
   margin-top: 5rem;
   padding-top: 3rem;
-  border-top: 1px solid #f1f5f9;
+  border-top: 1px solid var(--border);
 }
 
 .reaction-summary h3 {
@@ -185,9 +185,9 @@
   gap: 0.75rem;
   padding: 0.75rem 1.5rem;
   border-radius: 100px;
-  border: 1.5px solid #e2e8f0;
-  background: white;
-  color: #64748b;
+  border: 1.5px solid var(--border);
+  background: var(--bg-input);
+  color: var(--fg-muted);
   font-weight: 700;
   cursor: pointer;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -208,8 +208,9 @@
 }
 
 .reaction-btn:hover {
-  border-color: #94a3b8;
+  border-color: var(--border-focus);
   color: var(--fg-main);
+  background: var(--bg-card);
 }
 
 .loading-state, .error-state {

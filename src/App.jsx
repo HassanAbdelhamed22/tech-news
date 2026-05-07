@@ -4,17 +4,23 @@ import router from "./router/router";
 import { Toaster } from "react-hot-toast";
 import "./index.css";
 import { useTranslation } from "react-i18next";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { fetchNews } from "./store/slices/newsThunks";
 
 const App = () => {
   const { i18n } = useTranslation();
   const dispatch = useDispatch();
+  const theme = useSelector((s) => s.theme.mode);
 
   // Fetch all news, bookmarks, and reactions once on app load
   useEffect(() => {
     dispatch(fetchNews());
   }, [dispatch]);
+
+  // Apply theme to <html data-theme="dark|light">
+  useEffect(() => {
+    document.documentElement.setAttribute("data-theme", theme);
+  }, [theme]);
 
   useEffect(() => {
     document.documentElement.dir = i18n.language === "ar" ? "rtl" : "ltr";

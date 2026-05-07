@@ -10,15 +10,19 @@ import {
   Settings,
   Bookmark,
   Languages,
+  Moon,
+  Sun,
 } from "lucide-react";
 import "../../styles/Header.css";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../store/slices/authSlice";
+import { toggleTheme } from "../../store/slices/themeSlice";
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state.auth);
+  const theme = useSelector((s) => s.theme.mode);
   const { t, i18n } = useTranslation();
 
   const isArabic = i18n.language === "ar";
@@ -68,6 +72,15 @@ const Header = () => {
         </nav>
 
         <div className="header-actions">
+          {/* Theme Toggle */}
+          <button
+            className="theme-toggle-btn"
+            onClick={() => dispatch(toggleTheme())}
+            title={theme === "dark" ? "Switch to Light" : "Switch to Dark"}
+          >
+            {theme === "dark" ? <Sun size={18} /> : <Moon size={18} />}
+          </button>
+
           {/* Language Toggle */}
           <button
             className="lang-toggle-btn"
