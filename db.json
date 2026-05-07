@@ -27,6 +27,16 @@
       "userId": 1,
       "newsId": "1",
       "id": 3
+    },
+    {
+      "userId": 3,
+      "newsId": "1",
+      "id": 4
+    },
+    {
+      "userId": 3,
+      "newsId": "0uTjXr_",
+      "id": 5
     }
   ],
   "news": [
@@ -43,7 +53,7 @@
       "date": "Apr 28, 2026",
       "category": "AI",
       "likes": 3,
-      "dislikes": 0
+      "dislikes": 1
     },
     {
       "id": "2",
@@ -99,6 +109,21 @@
       "dislikes": 0,
       "date": "5/7/2026",
       "id": "vBY0i8J"
+    },
+    {
+      "title": "OpenAI Tools Are Reshaping Frontend Development",
+      "category": "AI",
+      "subtitle": "AI coding assistants are becoming a core part of developer workflows.",
+      "description": "Modern developers increasingly rely on AI-powered tools for debugging, refactoring, and generating components.",
+      "imageUrl": "https://images.unsplash.com/photo-1677442136019-21780ecad995",
+      "author": "Hassan Mihammed",
+      "title_ar": "أدوات OpenAI تعيد تشكيل تطوير الواجهة الأمامية",
+      "subtitle_ar": "مساعدات البرمجة بالذكاء الاصطناعي أصبحت جزءاً أساسياً من عمل المطورين.",
+      "description_ar": "يعتمد المطورون بشكل متزايد على أدوات الذكاء الاصطناعي لتصحيح الأخطاء وتحسين الكود وإنشاء المكونات البرمجية.",
+      "likes": 1,
+      "dislikes": 0,
+      "date": "5/7/2026",
+      "id": "0uTjXr_"
     }
   ],
   "reactions": [
@@ -113,6 +138,18 @@
       "newsId": "vBY0i8J",
       "type": "like",
       "id": 2
+    },
+    {
+      "userId": 3,
+      "newsId": "1",
+      "type": "dislike",
+      "id": 3
+    },
+    {
+      "userId": 3,
+      "newsId": "0uTjXr_",
+      "type": "like",
+      "id": 4
     }
   ]
 }

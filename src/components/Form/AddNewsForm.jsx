@@ -1,16 +1,16 @@
 import { useState } from "react";
 import { useNavigate } from "react-router";
 import { useTranslation } from "react-i18next";
-import { useNews } from "../../context/NewsContext";
-import { useAuth } from "../../context/AuthContext";
+import { useDispatch, useSelector } from "react-redux";
+import { addNews } from "../../store/slices/newsThunks";
 import { validateField } from "../../utils/validate";
 import { Type, Tag, FileText, ImageIcon, User, Send, X, Globe } from "lucide-react";
 import "../../styles/AddNewsForm.css";
 import toast from "react-hot-toast";
 
 const AddNewsForm = ({ onComplete }) => {
-  const { addNews } = useNews();
-  const { user } = useAuth();
+  const dispatch = useDispatch();
+  const { user } = useSelector((state) => state.auth);
   const navigate = useNavigate();
   const { t } = useTranslation();
 
@@ -62,10 +62,10 @@ const AddNewsForm = ({ onComplete }) => {
       description_ar: formData.description_ar.trim() || undefined,
     };
 
-    const success = await addNews(payload);
+    const result = await dispatch(addNews(payload));
     setIsSubmitting(false);
 
-    if (success) {
+    if (result.meta.requestStatus === "fulfilled") {
       if (onComplete) {
         onComplete();
       } else {

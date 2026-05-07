@@ -1,5 +1,4 @@
 import { useParams, useNavigate } from "react-router";
-import { useNews } from "../context/NewsContext";
 import { useTranslation } from "react-i18next";
 import getLocalizedField from "../utils/getLocalizedField";
 import {
@@ -13,20 +12,23 @@ import {
 import toast from "react-hot-toast";
 import "../styles/NewsDetails.css";
 import brainImage from "../assets/brain_scans.png";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { toggleBookmark, updateReaction } from "../store/slices/newsThunks";
+import {
+  selectUserReaction,
+  selectIsBookmarked,
+} from "../store/slices/newsSlice";
 
 const NewsDetails = () => {
   const { id } = useParams();
   const navigate = useNavigate();
-  const {
-    news,
-    updateReaction,
-    toggleBookmark,
-    isBookmarked,
-    loading,
-    getUserReaction,
-  } = useNews();
+  const dispatch = useDispatch();
+
+  const { news, loading } = useSelector((s) => s.news);
   const { user } = useSelector((state) => state.auth);
+  const userAction = useSelector(selectUserReaction(user?.id, id));
+  const bookmarked = useSelector(selectIsBookmarked(user?.id, id));
+
   const { t, i18n } = useTranslation();
   const lang = i18n.language;
 
@@ -50,21 +52,19 @@ const NewsDetails = () => {
       </div>
     );
 
-  const userAction = getUserReaction(user?.id, id);
-
   const handleLike = () => {
     if (!user) return toast.error(t("toast.loginToReact"));
-    updateReaction(user.id, id, "like");
+    dispatch(updateReaction({ userId: user.id, newsId: id, type: "like" }));
   };
 
   const handleDislike = () => {
     if (!user) return toast.error(t("toast.loginToReact"));
-    updateReaction(user.id, id, "dislike");
+    dispatch(updateReaction({ userId: user.id, newsId: id, type: "dislike" }));
   };
 
   const handleBookmark = () => {
     if (!user) return toast.error(t("toast.loginToBookmark"));
-    toggleBookmark(user.id, id);
+    dispatch(toggleBookmark({ userId: user.id, newsId: id }));
   };
 
   const handleShare = () => {
@@ -111,12 +111,12 @@ const NewsDetails = () => {
                 </button>
                 <button
                   onClick={handleBookmark}
-                  className={isBookmarked(user?.id, id) ? "active" : ""}
+                  className={bookmarked ? "active" : ""}
                   title="Bookmark"
                 >
                   <Bookmark
                     size={18}
-                    fill={isBookmarked(user?.id, id) ? "currentColor" : "none"}
+                    fill={bookmarked ? "currentColor" : "none"}
                   />
                 </button>
               </div>

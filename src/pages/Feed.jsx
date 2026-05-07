@@ -1,14 +1,17 @@
 import { useState, useMemo } from "react";
-import { useNews } from "../context/NewsContext";
 import { useNavigate } from "react-router";
 import { useTranslation } from "react-i18next";
 import toast from "react-hot-toast";
-import Card from "../components/Card/Card";
+import CardWrapper from "../components/Card/CardWrapper";
 import Search from "../components/Search/Search";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { toggleBookmark, updateReaction } from "../store/slices/newsThunks";
 
 const Feed = () => {
-  const { news, loading, error, updateReaction, toggleBookmark, isBookmarked, getUserReaction } = useNews();
+  const dispatch = useDispatch();
+  const { news, bookmarks, reactions, loading, error } = useSelector(
+    (s) => s.news,
+  );
   const [searchQuery, setSearchQuery] = useState("");
   const user = useSelector((state) => state.auth.user);
   const navigate = useNavigate();
@@ -20,7 +23,7 @@ const Feed = () => {
       navigate("/login");
       return;
     }
-    toggleBookmark(user.id, id);
+    dispatch(toggleBookmark({ userId: user.id, newsId: id }));
   };
 
   const handleLike = (id) => {
@@ -29,7 +32,7 @@ const Feed = () => {
       navigate("/login");
       return;
     }
-    updateReaction(user.id, id, "like");
+    dispatch(updateReaction({ userId: user.id, newsId: id, type: "like" }));
   };
 
   const handleDislike = (id) => {
@@ -38,13 +41,13 @@ const Feed = () => {
       navigate("/login");
       return;
     }
-    updateReaction(user.id, id, "dislike");
+    dispatch(updateReaction({ userId: user.id, newsId: id, type: "dislike" }));
   };
 
   const filteredNews = useMemo(() => {
     return news
       .filter((item) =>
-        item.title.toLowerCase().includes(searchQuery.toLowerCase())
+        item.title.toLowerCase().includes(searchQuery.toLowerCase()),
       )
       .sort((a, b) => new Date(b.date) - new Date(a.date));
   }, [news, searchQuery]);
@@ -65,20 +68,21 @@ const Feed = () => {
             <p>{t("feed.loading")}</p>
           </div>
         )}
-        
+
         {error && <div className="error-msg">{error}</div>}
-        
-        {!loading && !error && filteredNews.map((item) => (
-          <Card
-            key={item.id}
-            {...item}
-            userAction={getUserReaction(user?.id, item.id)}
-            onLike={handleLike}
-            onDislike={handleDislike}
-            onBookmark={handleBookmark}
-            isBookmarked={isBookmarked(user?.id, item.id)}
-          />
-        ))}
+
+        {!loading &&
+          !error &&
+          filteredNews.map((item) => (
+            <CardWrapper
+              key={item.id}
+              item={item}
+              userId={user?.id}
+              onLike={handleLike}
+              onDislike={handleDislike}
+              onBookmark={handleBookmark}
+            />
+          ))}
 
         {!loading && !error && filteredNews.length === 0 && (
           <div className="no-results">{t("feed.noResults")}</div>
