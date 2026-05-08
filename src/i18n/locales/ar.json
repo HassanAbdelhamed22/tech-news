@@ -1,0 +1,168 @@
+{
+  "slider": {
+    "readStory": "اقرأ القصة كاملة"
+  },
+  "header": {
+    "home": "الرئيسية",
+    "feed": "الأخبار",
+    "bookmarks": "المحفوظات",
+    "addNews": "إضافة خبر",
+    "login": "تسجيل الدخول",
+    "signUp": "إنشاء حساب",
+    "logout": "تسجيل الخروج",
+    "hi": "مرحباً"
+  },
+  "home": {
+    "trending": "الأكثر تداولاً",
+    "trendingSubtitle": "أكثر القصص نقاشاً وإعجاباً هذا الأسبوع",
+    "shareNews": "+ شارك خبراً",
+    "viewFeed": "عرض جميع الأخبار",
+    "loading": "جارٍ تنظيم أفضل القصص..."
+  },
+  "feed": {
+    "title": "خلاصة التقنية",
+    "subtitle": "ابقَ على اطلاع بأحدث أخبار التقنية",
+    "loading": "جارٍ تجميع أحدث أخبار التقنية...",
+    "noResults": "لا توجد أخبار تقنية تطابق بحثك."
+  },
+  "myNews": {
+    "title": "محفوظاتي",
+    "subtitle": "قائمتك المختارة من أهم مقالات التقنية",
+    "articles": "مقالات",
+    "loading": "جارٍ تحميل قصصك المحفوظة...",
+    "emptyTitle": "مكتبتك فارغة",
+    "emptyMessage": "المقالات التي تحفظها ستظهر هنا للوصول السريع."
+  },
+  "addNews": {
+    "pageTitle": "شارك قصتك التقنية",
+    "pageSubtitle": "مساهمة في مستقبل التقنية، قصة واحدة في كل مرة.",
+    "draft": "مسودة",
+    "clearForm": "مسح النموذج",
+    "confirmClear": "هل أنت متأكد أنك تريد مسح النموذج؟",
+    "titleLabel": "عنوان المقال",
+    "titlePlaceholder": "أعطِ قصتك عنواناً قوياً...",
+    "titleArLabel": "عنوان المقال (عربي - اختياري)",
+    "titleArPlaceholder": "عنوان المقال بالعربية (اختياري)...",
+    "categoryLabel": "الفئة",
+    "categoryPlaceholder": "اختر فئة",
+    "authorLabel": "اسم الكاتب",
+    "authorPlaceholder": "اسم الكاتب",
+    "subtitleLabel": "العنوان الفرعي",
+    "subtitlePlaceholder": "عن ماذا يتحدث هذا المقال في جملة واحدة؟",
+    "subtitleArLabel": "العنوان الفرعي (عربي - اختياري)",
+    "subtitleArPlaceholder": "العنوان الفرعي بالعربية (اختياري)...",
+    "imageLabel": "رابط صورة الغلاف",
+    "imagePlaceholder": "الصق رابط Unsplash أو رابط صورة مباشر...",
+    "descriptionLabel": "الوصف الكامل",
+    "descriptionPlaceholder": "احكِ القصة كاملة هنا...",
+    "descriptionArLabel": "الوصف الكامل (عربي - اختياري)",
+    "descriptionArPlaceholder": "الوصف الكامل بالعربية (اختياري)...",
+    "publish": "نشر في الخلاصة",
+    "publishing": "جارٍ النشر...",
+    "arabicSectionTitle": "المحتوى العربي (اختياري)"
+  },
+  "login": {
+    "brandTitle": "انضم إلى الحوار الذي يصنع المستقبل.",
+    "brandText": "أكثر المهندسين والمصممين ابتكاراً في العالم يشاركون أفكارهم هنا. لا تكتفِ بمتابعة المستقبل—كُن جزءاً منه.",
+    "secure": "بياناتك مشفرة وآمنة.",
+    "title": "مرحباً بعودتك",
+    "subtitle": "أهلاً بعودتك. لنعُد إلى الحوار.",
+    "continueGoogle": "المتابعة مع Google",
+    "orEmail": "أو تسجيل الدخول بالبريد الإلكتروني",
+    "emailLabel": "البريد الإلكتروني",
+    "emailPlaceholder": "name@example.com",
+    "passwordLabel": "كلمة المرور",
+    "rememberMe": "تذكّرني",
+    "forgotPassword": "نسيت كلمة المرور؟",
+    "submit": "الدخول إلى TechNews",
+    "submitting": "جارٍ المصادقة...",
+    "noAccount": "ليس لديك حساب؟",
+    "createAccount": "أنشئ حساباً الآن"
+  },
+  "register": {
+    "brandTitle": "ابدأ رحلتك في عالم التقنية.",
+    "brandText": "انضم إلى آلاف المطورين الذين يتشاركون الأفكار والرؤى. احصل على أخبار مختارة، شارك مشاريعك، وتواصل مع أقرانك.",
+    "secure": "نحن لا نشارك بياناتك. أبداً.",
+    "title": "إنشاء حساب",
+    "subtitle": "أنشئ حسابك وابدأ في تشكيل مستقبل التقنية.",
+    "fullNameLabel": "الاسم الكامل",
+    "fullNamePlaceholder": "أحمد محمد",
+    "emailLabel": "البريد الإلكتروني",
+    "emailPlaceholder": "name@example.com",
+    "passwordLabel": "كلمة المرور",
+    "passwordPlaceholder": "6 أحرف على الأقل",
+    "confirmPasswordLabel": "تأكيد كلمة المرور",
+    "confirmPasswordPlaceholder": "أعد إدخال كلمة المرور",
+    "submit": "انضم إلى الحوار",
+    "submitting": "جارٍ إنشاء الحساب...",
+    "privacy": "بإنشاء حساب، فإنك توافق على شروط الخدمة وسياسة الخصوصية. سنرسل لك تحديثات دورية للمنتج.",
+    "haveAccount": "هل لديك حساب بالفعل؟",
+    "signIn": "تسجيل الدخول بدلاً من ذلك"
+  },
+  "newsDetails": {
+    "back": "رجوع",
+    "loading": "جارٍ تحميل المقال...",
+    "notFound": "المقال غير موجود",
+    "backToFeed": "العودة إلى الأخبار",
+    "whatDoYouThink": "ما رأيك؟",
+    "linkCopied": "تم نسخ الرابط!"
+  },
+  "notFound": {
+    "title": "الصفحة غير موجودة",
+    "message": "عذراً! الصفحة التي تبحث عنها غير موجودة أو انتقلت إلى وجهة جديدة في عالم التقنية.",
+    "backHome": "العودة إلى الرئيسية",
+    "goBack": "رجوع"
+  },
+  "errorPage": {
+    "title": "حدث خطأ ما",
+    "message": "حدث خطأ غير متوقع. تم إبلاغ مهندسينا ويعملون على استعادة الخلاصة.",
+    "errorDetails": "تفاصيل الخطأ:",
+    "tryAgain": "حاول مجدداً",
+    "goHome": "الذهاب إلى الرئيسية"
+  },
+  "search": {
+    "placeholder": "ابحث عن المقالات بالعنوان..."
+  },
+  "card": {
+    "by": "بقلم",
+    "addBookmark": "أضف إلى المحفوظات",
+    "removeBookmark": "إزالة من المحفوظات"
+  },
+  "toast": {
+    "loginToBookmark": "يرجى تسجيل الدخول للحفظ",
+    "loginToReact": "يرجى تسجيل الدخول للتفاعل",
+    "welcomeBack": "مرحباً بعودتك، {{name}}!",
+    "welcomeCommunity": "مرحباً بك في المجتمع!",
+    "invalidCredentials": "البريد الإلكتروني أو كلمة المرور غير صحيحة",
+    "serverError": "حدث خطأ ما. يرجى المحاولة مجدداً.",
+    "emailExists": "البريد الإلكتروني موجود بالفعل",
+    "registerFailed": "فشل التسجيل. يرجى المحاولة مجدداً.",
+    "fixErrors": "يرجى تصحيح الأخطاء قبل النشر.",
+    "bookmarkAdded": "تمت الإضافة إلى المحفوظات",
+    "bookmarkRemoved": "تمت الإزالة من المحفوظات",
+    "bookmarkFailed": "فشل تحديث المحفوظات",
+    "newsShared": "تمت مشاركة الخبر بنجاح!",
+    "newsShareFailed": "فشل نشر الخبر.",
+    "reactionFailed": "فشل حفظ التفاعل",
+    "newsDeleted": "تم حذف الخبر.",
+    "newsDeleteFailed": "فشل حذف الخبر."
+  },
+  "validation": {
+    "passwordsMismatch": "كلمتا المرور غير متطابقتين"
+  },
+  "footer": {
+    "desc": "ابقَ في المقدمة مع آخر ما يجري في عالم التقنية والذكاء الاصطناعي والثقافة الرقمية.",
+    "sectionsTitle": "الأقسام",
+    "latestNews": "آخر الأخبار",
+    "reviews": "المراجعات",
+    "aiMl": "ذكاء اصطناعي",
+    "gadgets": "الأجهزة",
+    "companyTitle": "الشركة",
+    "about": "عنا",
+    "contact": "تواصل",
+    "privacy": "سياسة الخصوصية",
+    "terms": "شروط الخدمة",
+    "followTitle": "تابعنا",
+    "copyright": "© 2026 TechNews. جميع الحقوق محفوظة."
+  }
+}

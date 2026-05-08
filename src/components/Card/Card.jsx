@@ -4,6 +4,8 @@ import LikeButton from "./LikeButton";
 import DislikeButton from "./DislikeButton";
 import { Bookmark } from "lucide-react";
 import { Link } from "react-router";
+import { useTranslation } from "react-i18next";
+import getLocalizedField from "../../utils/getLocalizedField";
 
 const Card = ({
   id,
@@ -21,7 +23,16 @@ const Card = ({
   onDislike,
   onBookmark,
   isBookmarked,
+  ...rest  // captures title_ar, subtitle_ar, description_ar, etc.
 }) => {
+  const { t, i18n } = useTranslation();
+  const lang = i18n.language;
+
+  // Pass the full article object (including _ar fields from rest) to getLocalizedField
+  const item = { title, subtitle, ...rest };
+  const localizedTitle = getLocalizedField(item, "title", lang);
+  const localizedSubtitle = getLocalizedField(item, "subtitle", lang);
+
   return (
     <div className="card">
       <div className="card-content">
@@ -31,11 +42,11 @@ const Card = ({
           <span className="card-date">{date}</span>
         </div>
         <Link to={`/news/${id}`} className="card-title-link">
-          <h2 className="card-title">{title}</h2>
+          <h2 className="card-title">{localizedTitle}</h2>
         </Link>
-        <p className="card-subtitle">{subtitle}</p>
+        <p className="card-subtitle">{localizedSubtitle}</p>
         
-        <div className="card-author">By {author}</div>
+        <div className="card-author">{t("card.by")} {author}</div>
         <div className="card-actions">
           <LikeButton
             count={likes}
@@ -50,7 +61,7 @@ const Card = ({
           <button 
             className={`reaction-btn bookmark-btn ${isBookmarked ? 'active' : ''}`}
             onClick={() => onBookmark(id)}
-            title={isBookmarked ? "Remove from bookmarks" : "Add to bookmarks"}
+            title={isBookmarked ? t("card.removeBookmark") : t("card.addBookmark")}
           >
             <Bookmark size={18} fill={isBookmarked ? "currentColor" : "none"} />
           </button>
@@ -59,7 +70,7 @@ const Card = ({
       <Link to={`/news/${id}`} className="card-image-container">
         <img
           src={imageUrl || brainImage}
-          alt={title || "Article visual"}
+          alt={localizedTitle || "Article visual"}
           className="card-image"
         />
       </Link>
@@ -68,4 +79,3 @@ const Card = ({
 };
 
 export default Card;
-

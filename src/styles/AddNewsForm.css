@@ -6,11 +6,11 @@
 }
 
 .editor-pane {
-  background: white;
+  background: var(--bg-card);
   padding: 2.5rem;
   border-radius: var(--radius-xl);
   box-shadow: 0 10px 40px rgba(0, 0, 0, 0.04);
-  border: 1px solid rgba(0, 0, 0, 0.05);
+  border: 1px solid var(--border);
   width: 100%;
   max-width: 800px;
 }
@@ -21,12 +21,12 @@
   align-items: center;
   margin-bottom: 2rem;
   padding-bottom: 1.5rem;
-  border-bottom: 1px solid #f1f5f9;
+  border-bottom: 1px solid var(--border);
 }
 
 .editor-badge {
-  background: #f1f5f9;
-  color: #64748b;
+  background: var(--bg-main);
+  color: var(--fg-muted);
   padding: 0.25rem 0.75rem;
   border-radius: 100px;
   font-size: 0.75rem;
@@ -38,7 +38,7 @@
 .reset-link {
   background: none;
   border: none;
-  color: #94a3b8;
+  color: var(--fg-subtle);
   font-size: 0.875rem;
   cursor: pointer;
   display: flex;
@@ -75,7 +75,7 @@
   gap: 0.5rem;
   font-size: 0.875rem;
   font-weight: 600;
-  color: #475569;
+  color: var(--fg-main);
 }
 
 .form-group label svg {
@@ -88,8 +88,8 @@
   width: 100%;
   padding: 0.875rem 1rem;
   border-radius: var(--radius-md);
-  border: 1.5px solid #e2e8f0;
-  background: #f8fafc;
+  border: 1.5px solid var(--border);
+  background: var(--bg-input);
   font-size: 0.95rem;
   transition: all 0.3s ease;
   color: var(--fg-main);
@@ -99,9 +99,9 @@
 .form-group select:focus,
 .form-group textarea:focus {
   outline: none;
-  background: white;
+  background: var(--bg-main);
   border-color: var(--accent);
-  box-shadow: 0 0 0 4px rgba(0, 112, 243, 0.05);
+  box-shadow: 0 0 0 4px var(--ring);
 }
 
 .form-group input.error,
@@ -118,7 +118,7 @@
 
 .publish-btn {
   background: var(--fg-main);
-  color: white;
+  color: var(--bg-main);
   padding: 1.125rem;
   border-radius: var(--radius-md);
   border: none;
@@ -133,7 +133,7 @@
 }
 
 .publish-btn:hover {
-  background: #1e293b;
+  background: var(--fg-muted);
   transform: translateY(-2px);
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
 }
@@ -156,3 +156,30 @@
   to { transform: rotate(360deg); }
 }
 
+/* Arabic Optional Section */
+.arabic-section {
+  border: 1.5px dashed var(--border);
+  border-radius: var(--radius-lg);
+  padding: 1.5rem;
+  background: var(--bg-input);
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.arabic-section-header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: var(--accent);
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.arabic-section input,
+.arabic-section textarea {
+  font-family: 'Cairo', sans-serif;
+  font-size: 1rem;
+}

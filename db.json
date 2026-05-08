@@ -13,38 +13,56 @@
       "fullName": "Mazen Raafet",
       "joinedAt": "2026-05-04T18:15:45.736Z",
       "id": 2
+    },
+    {
+      "email": "hassan@gmail.com",
+      "password": "$2a$10$GlRSiKQXsucmYuzRyJcrYecNUZXc.FWzpMIXzWKSDydOROUmiDsWW",
+      "fullName": "Hassan Mihammed",
+      "joinedAt": "2026-05-07T12:46:32.820Z",
+      "id": 3
     }
   ],
   "bookmarks": [
     {
       "userId": 1,
-      "newsId": "HDzQ5ZdSdPY",
-      "id": 1
+      "newsId": "1",
+      "id": 3
     },
     {
-      "userId": 2,
-      "newsId": "aiKsBLR_48w",
-      "id": 2
+      "userId": 3,
+      "newsId": "1",
+      "id": 4
+    },
+    {
+      "userId": 3,
+      "newsId": "0uTjXr_",
+      "id": 5
     }
   ],
   "news": [
     {
       "id": "1",
       "title": "Google Launches Gemini 3.1 Pro: The Most Capable AI Model Yet",
+      "title_ar": "جوجل تطلق Gemini 3.1 Pro: أقوى نموذج ذكاء اصطناعي حتى الآن",
       "subtitle": "Next-gen reasoning, 2M token context window, and native multimodal capabilities",
-      "description": "Google DeepMind has released Gemini 3.1 Pro, its most advanced AI model to date. Building on the success of Gemini 2.5 Pro's 'thinking model' approach, the new version delivers breakthrough reasoning capabilities, a 2-million-token context window, and natively integrated multimodal understanding across text, images, audio, and video. Early benchmarks show it outperforms competitors across coding, math, and scientific reasoning tasks.",
-      "imageUrl": "https://images.unsplash.com/photo-1573804633927-bfcbcd909acd?q=80&w=1227&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "subtitle_ar": "تفكير متقدم، نافذة سياق 2 مليون توكن، وقدرات متعددة الوسائط",
+      "description": "Google DeepMind has released Gemini 3.1 Pro, its most advanced AI model to date.",
+      "description_ar": "أطلقت Google DeepMind نموذج Gemini 3.1 Pro، وهو أكثر نماذج الذكاء الاصطناعي تقدمًا حتى الآن.",
+      "imageUrl": "https://images.unsplash.com/photo-1573804633927-bfcbcd909acd",
       "author": "Google AI Blog",
       "date": "Apr 28, 2026",
       "category": "AI",
-      "likes": 2,
-      "dislikes": 0
+      "likes": 3,
+      "dislikes": 1
     },
     {
       "id": "2",
       "title": "React Server Components Go Mainstream in 2026",
+      "title_ar": "مكونات React Server تصبح شائعة في 2026",
       "subtitle": "The architectural shift that's redefining how we build React apps",
-      "description": "React Server Components have officially moved from experimental to mainstream adoption. With the React Compiler now stable, developers can build apps that ship dramatically less JavaScript to the browser. The community is embracing a hybrid model where server-rendered components handle data fetching while client components manage interactivity, resulting in significantly faster load times and improved SEO.",
+      "subtitle_ar": "تحول معماري يعيد تعريف كيفية بناء تطبيقات React",
+      "description": "React Server Components have officially moved from experimental to mainstream adoption.",
+      "description_ar": "انتقلت مكونات React Server رسميًا من مرحلة التجربة إلى الاستخدام الواسع.",
       "imageUrl": "https://images.unsplash.com/photo-1633356122544-f134324a6cee",
       "author": "React Blog",
       "date": "Apr 27, 2026",
@@ -55,252 +73,83 @@
     {
       "id": "3",
       "title": "Node.js 24 Released with Major Performance Improvements",
+      "title_ar": "إصدار Node.js 24 مع تحسينات كبيرة في الأداء",
       "subtitle": "V8 engine upgrade, native TypeScript support, and enhanced security features",
-      "description": "The Node.js team has officially released Node.js 24, marking a significant milestone for server-side JavaScript. Key highlights include a V8 engine upgrade bringing 30% faster startup times, experimental native TypeScript execution without transpilation, improved permission model for security-sensitive applications, and seamless integration with the latest ECMAScript features including import attributes and new Set methods.",
+      "subtitle_ar": "تحديث محرك V8، دعم TypeScript أصلي، وتحسينات أمنية",
+      "description": "The Node.js team has officially released Node.js 24.",
+      "description_ar": "أصدر فريق Node.js رسميًا الإصدار 24 مع تحسينات ملحوظة.",
       "imageUrl": "https://images.unsplash.com/photo-1558494949-ef010cbdcc31",
       "author": "OpenJS Foundation",
       "date": "Apr 26, 2026",
       "category": "Backend"
     },
     {
-      "id": "4",
-      "title": "The Rise of AI Agents: From Chatbots to Autonomous Developers",
-      "subtitle": "Agentic AI is transforming software development workflows",
-      "description": "AI agents have evolved far beyond simple chatbots. In 2026, autonomous AI agents can plan complex tasks, write and debug code, deploy applications, and even perform code reviews. Companies like Google, Anthropic, and OpenAI are shipping agentic development environments that integrate directly into IDEs, turning AI from an autocomplete tool into a true pair programmer capable of handling multi-step engineering tasks.",
-      "imageUrl": "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-      "author": "TechCrunch",
-      "date": "Apr 25, 2026",
-      "category": "AI"
-    },
-    {
-      "id": "5",
-      "title": "Rust Hits Enterprise Mainstream: 49% of Orgs Now Use It in Production",
-      "subtitle": "The 2025 State of Rust Survey reveals massive enterprise adoption growth",
-      "description": "The latest State of Rust Survey shows that nearly half of all organizations (48.8%) now make non-trivial use of Rust in production—a 10-point jump from 2023. Major tech companies including Amazon, Microsoft, Google, and Cloudflare are using Rust for performance-critical infrastructure. The GCC Rust compiler (gccrs) project is gaining momentum, promising to make Rust available on even more platforms and hardware architectures.",
+      "title": "Next.js 16.2 Ships With Massive Performance Improvements",
+      "category": "Web Dev",
+      "subtitle": "The latest release introduces AI-ready tooling and much faster dev startup times.",
+      "description": "Next.js 16.2 delivers up to 400% faster startup speeds, improved rendering performance, and experimental AI debugging tools for developers. The update also introduces better Turbopack support and enhanced server-side rendering optimizations.",
       "imageUrl": "https://images.unsplash.com/photo-1555066931-4365d14bab8c",
-      "author": "The New Stack",
-      "date": "Apr 24, 2026",
-      "category": "Programming"
-    },
-    {
-      "id": "6",
-      "title": "Vibe Coding vs. Real Engineering: The Great AI Developer Debate",
-      "subtitle": "Is AI-assisted coding creating a generation of developers who can't debug?",
-      "description": "The developer community is engaged in a heated debate about 'vibe coding'—the practice of relying heavily on AI to generate code without deeply understanding the underlying logic. While AI coding assistants have boosted productivity by 40-60% in studies, senior engineers warn that over-reliance on AI without foundational knowledge creates fragile codebases and developers who struggle to debug complex production issues.",
-      "imageUrl": "https://images.unsplash.com/photo-1618477247222-acbdb0e159b3",
-      "author": "daily.dev",
-      "date": "Apr 23, 2026",
-      "category": "Opinion",
-      "likes": 0,
-      "dislikes": 0
-    },
-    {
-      "id": "7",
-      "title": "Bun 2.0 Launches: The Runtime Wars Heat Up",
-      "subtitle": "Bun challenges Node.js and Deno with blazing-fast performance and all-in-one tooling",
-      "description": "Bun 2.0 has been released with remarkable performance benchmarks, claiming to be 4x faster than Node.js for common web workloads. The all-in-one JavaScript runtime now includes a production-ready bundler, test runner, and package manager. With native TypeScript and JSX support out of the box, Bun is positioned as a serious contender in the runtime wars alongside Node.js and Deno.",
-      "imageUrl": "https://images.unsplash.com/photo-1518770660439-4636190af475",
-      "author": "Oven Team",
-      "date": "Apr 22, 2026",
-      "category": "Tools"
-    },
-    {
-      "id": "8",
-      "title": "CSS Gets Native If/Else Logic: A Game Changer for Styling",
-      "subtitle": "The new CSS if() function brings conditional logic directly to stylesheets",
-      "description": "The W3C has finalized the CSS if() specification, enabling conditional logic natively in stylesheets for the first time. Developers can now write responsive, theme-aware, and feature-dependent styles without preprocessors or JavaScript. Major browsers are expected to ship support by Q3 2026, marking the biggest evolution in CSS since Grid and Custom Properties.",
-      "imageUrl": "https://images.unsplash.com/photo-1507721999472-8ed4421c4af2",
-      "author": "CSS Working Group",
-      "date": "Apr 21, 2026",
-      "category": "CSS"
-    },
-    {
-      "id": "9",
-      "title": "The Modular Monolith: Why Startups Are Ditching Microservices",
-      "subtitle": "Developer experience over architectural complexity",
-      "description": "A growing movement in the developer community is pushing back against premature adoption of microservices. The 'modular monolith' pattern—a well-structured monolithic application with clear module boundaries—is gaining traction as startups realize that microservices add operational complexity that small teams cannot sustain. Companies like Shopify and Basecamp have publicly championed this approach for teams under 50 engineers.",
-      "imageUrl": "https://images.unsplash.com/photo-1551288049-bebda4e38f71",
-      "author": "System Design Weekly",
-      "date": "Apr 20, 2026",
-      "category": "Architecture"
-    },
-    {
-      "id": "10",
-      "title": "Next.js 16 Introduces Edge-First Architecture by Default",
-      "subtitle": "Edge computing becomes the standard deployment model for React applications",
-      "description": "Vercel has released Next.js 16 with edge-first architecture as the default deployment model. Applications now run on edge nodes closest to users by default, with automatic fallback to serverless functions for compute-heavy operations. The update also includes a revamped caching system, built-in image AI optimization, and first-class support for React Server Components streaming.",
-      "imageUrl": "https://images.unsplash.com/photo-1460925895917-afdab827c52f",
-      "author": "Vercel Blog",
-      "date": "Apr 19, 2026",
-      "category": "Web Dev"
-    },
-    {
-      "id": "11",
-      "title": "GitHub Copilot Workspace: AI That Plans, Codes, and Deploys",
-      "subtitle": "From issue to pull request without writing a single line of code",
-      "description": "GitHub has launched Copilot Workspace out of beta, enabling developers to go from a GitHub issue to a fully deployed pull request using natural language. The AI agent reads the codebase, creates an implementation plan, writes the code, generates tests, and opens a PR—all autonomously. Early adopters report 3x faster feature delivery, though code review remains essential for production quality.",
-      "imageUrl": "https://images.unsplash.com/photo-1556075798-4825dfaaf498",
-      "author": "GitHub Blog",
-      "date": "Apr 18, 2026",
-      "category": "Tools"
-    },
-    {
-      "id": "12",
-      "title": "TypeScript 6.0: Faster, Smarter, and More Powerful Than Ever",
-      "subtitle": "10x faster type checking, pattern matching, and improved inference",
-      "description": "Microsoft has released TypeScript 6.0, delivering a 10x improvement in type-checking speed through a new incremental architecture. New features include native pattern matching syntax, improved type narrowing for complex union types, and first-class support for decorators. The update also introduces a 'strict-plus' mode that catches even more bugs at compile time, making TypeScript the gold standard for typed JavaScript development.",
-      "imageUrl": "https://images.unsplash.com/photo-1587620962725-abab7fe55159",
-      "author": "Microsoft DevBlog",
-      "date": "Apr 17, 2026",
-      "category": "Programming"
-    },
-    {
-      "title": "Why I'm Building SaaS in 2026",
-      "category": "Future Tech",
-      "subtitle": "SaaS as reliable plumbing for fragile agents",
-      "description": "Every few months, someone declares SaaS dead. The argument has gotten louder in 2026: why pay for vertical tools when an LLM and a GitHub Action can do the same job in an afternoon?\n\nI've heard this pitch enough times - and built enough of those afternoon GitHub Actions myself - to know where it breaks. The demo always works. The Tuesday morning two months later, when the upstream API changes its response shape and your \"AI agent\" silently ships nonsense to customers, is where the wheels come off.\n\nI think SaaS in 2026 is healthier than the obituaries suggest, but the conversation around it is shifting in ways worth paying attention to.",
-      "image": "https://media2.dev.to/dynamic/image/width=1000,height=420,fit=cover,gravity=auto,format=auto/https%3A%2F%2Fdev-to-uploads.s3.amazonaws.com%2Fuploads%2Farticles%2Foa45e1vj8vysgno36jl3.png",
       "author": "Hassan Abdelhamed",
-      "id": "zbWtOwuFqZ0"
-    },
-    {
-      "title": "15 Essential Sections Every README Needs: Give Your Project What It Deserves",
-      "category": "Gadgets",
-      "subtitle": "Ready-to-use markdown template",
-      "description": "Overview\nImagine building an amazing software product that no one can use, or even knows exists simply because it lacks proper documentation. Unfortunately, there are plenty of projects like that.\n\nYours doesn't have to be one of them.\n\nEarlier I published an article The Final 1% of Every GitHub Project: Sealing It Properly, where README was literally the first item on the list. Yes, it's that important, and that's why I decided to take a deeper look into this topic.\n\nIf you're a software engineer, knowing how to write proper documentation is one of the most critical skills you can have. There's no excuse for skipping it or considering it as optional.\n\nYes, coding is way more fun. But coming back later and trying to understand what you did (and why you did it) without any reference is far less fun than writing a few clear notes upfront.\n\nAnd if you want your work to be recognized, used, contributed to, or even starred, documentation isn't optional. It's one of the first things people see, and often the reason they stay... or leave.\n\nBut this article isn't about documentation as a whole, that's a massive topic and it deserves to be broken down. There are many different types of documentation, each serving a different purpose.\n\nHere, we're focusing on the most essential one: the README.",
-      "image": "https://images.unsplash.com/photo-1599059285716-b217140c0ef3?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-      "author": "Mazen Raafet",
-      "id": "aiKsBLR_48w",
-      "likes": 2,
-      "dislikes": 0
-    },
-    {
-      "id": "fx85dDSifuM",
-      "title": "React Introduces Server Actions for Simpler Data Mutations",
-      "category": "Web Dev",
-      "subtitle": "New feature reduces need for client-side state management in forms",
-      "description": "The React team has introduced Server Actions, allowing developers to handle form submissions and mutations directly on the server without relying heavily on client-side state. This approach simplifies form handling and improves performance, especially in frameworks that support server components.",
-      "image": "https://images.unsplash.com/photo-1633356122544-f134324a6cee",
-      "author": "React Team",
-      "date": "4/30/2026"
-    },
-    {
-      "id": "N7oZlkuaDvE",
-      "title": "React Introduces Server Actions for Simpler Data Mutations",
-      "category": "Web Dev",
-      "subtitle": "New feature reduces need for client-side state management in forms",
-      "description": "The React team has introduced Server Actions, allowing developers to handle form submissions and mutations directly on the server without relying heavily on client-side state. This approach simplifies form handling and improves performance, especially in frameworks that support server components.",
-      "imageUrl": "https://images.unsplash.com/photo-1633356122544-f134324a6cee",
-      "author": "React Team",
-      "date": "4/30/2026"
-    },
-    {
-      "title": "Next.js Expands App Router Capabilities",
-      "category": "Web Dev",
-      "subtitle": "Improved routing, layouts, and server rendering features",
-      "description": "The Next.js team continues to enhance the App Router with better support for nested layouts, streaming, and server-side rendering. These improvements aim to make building scalable full-stack React applications more efficient and maintainable.\n",
-      "imageUrl": "https://images.unsplash.com/photo-1555066931-4365d14bab8c",
-      "author": "Vercel",
-      "date": "4/30/2026",
-      "id": "o4OLmKuL8ho"
-    },
-    {
-      "title": "Inside OpenAI's Latest Model: What Changed?",
-      "category": "Future Tech",
-      "subtitle": "Smarter reasoning, faster responses, and lower cost",
-      "description": "OpenAI's newest model improves reasoning capabilities and efficiency. Here's a technical breakdown of what's under the hood.\n",
-      "imageUrl": "https://images.unsplash.com/photo-1677442136019-21780ecad995",
-      "author": "AI Weekly",
-      "date": "5/2/2026",
-      "id": "HDzQ5ZdSdPY",
-      "likes": 4,
-      "dislikes": 0
-    },
-    {
-      "title": "Tailwind CSS vs Traditional CSS: The 2026 Verdict",
-      "category": "Web Dev",
-      "subtitle": "Utility-first is dominating—but is it always better?",
-      "description": "Tailwind continues to grow, but some developers are pushing back. Here's a balanced comparison.",
-      "imageUrl": "https://images.unsplash.com/photo-1507721999472-8ed4421c4af2",
-      "author": "CSS Weekly",
-      "date": "5/2/2026",
-      "id": "-2el4-pvgGE"
-    },
-    {
-      "title": "How GitHub Copilot is Changing Developer Workflows",
-      "category": "Programming",
-      "subtitle": "From autocomplete to pair programming",
-      "description": "AI-assisted coding tools are becoming essential. We explore how developers are adapting.",
-      "imageUrl": "https://images.unsplash.com/photo-1618477247222-acbdb0e159b3",
-      "author": "GitHub Blog",
-      "date": "5/2/2026",
-      "id": "dhK1R1kG3iE"
-    },
-    {
-      "title": "Next.js vs Remix: Which Framework Wins in 2026?",
-      "category": "Web Dev",
-      "subtitle": "A deep dive into performance, DX, and scalability",
-      "description": "Both frameworks are powerful, but they serve different needs. We compare real-world use cases to help you decide.",
-      "imageUrl": "https://images.unsplash.com/photo-1555066931-4365d14bab8c",
-      "author": "Frontend Masters",
-      "date": "5/2/2026",
-      "id": "MooPPdp-2ug"
-    },
-    {
-      "title": "test5",
-      "category": "AI",
-      "subtitle": "SaaS as reliable plumbing for fragile agents",
-      "description": "gfhnsfghngfnsgnsfgnfhn",
-      "imageUrl": "https://media2.dev.to/dynamic/image/width=1000,height=420,fit=cover,gravity=auto,format=auto/https%3A%2F%2Fdev-to-uploads.s3.amazonaws.com%2Fuploads%2Farticles%2Foa45e1vj8vysgno36jl3.png",
-      "author": "ngfn",
-      "date": "5/2/2026",
-      "id": "TIsxFkhnVqw"
-    },
-    {
-      "title": "test5",
-      "category": "AI",
-      "subtitle": "From autocomplete to pair programming",
-      "description": "fbarbadbrfdbaadfbfdb",
-      "imageUrl": "https://images.unsplash.com/photo-1633356122544-f134324a6cee",
-      "author": "gbwg",
-      "date": "5/2/2026",
-      "id": "xQr27PNBfFc"
-    },
-    {
-      "title": "dfbfdbvf",
-      "category": "AI",
-      "subtitle": "SaaS as reliable plumbing for fragile agents",
-      "description": "fvfdsvtgbtevbtbvetrbvtb",
-      "imageUrl": "https://images.unsplash.com/photo-1633356122544-f134324a6cee",
-      "author": "Hassan Abdelhamed",
-      "date": "5/2/2026",
-      "id": "_BLQpjIrRuc"
-    },
-    {
-      "title": "How GitHub Copilot is Changing Developer Workflows",
-      "category": "Future Tech",
-      "subtitle": "From autocomplete to pair programming",
-      "description": "AI-assisted coding tools are becoming essential. We explore how developers are adapting.",
-      "imageUrl": "https://images.unsplash.com/photo-1558494949-ef010cbdcc31",
-      "author": "Mazen Raafet",
       "likes": 0,
       "dislikes": 0,
-      "date": "5/4/2026",
-      "id": "I5AFAc6"
+      "date": "5/7/2026",
+      "id": "F1Nnjkb"
+    },
+    {
+      "title": "React Developers Are Exploring TanStack Start",
+      "category": "Web Dev",
+      "subtitle": "Many developers are moving away from complex App Router workflows.",
+      "description": "TanStack Start is gaining popularity among React developers looking for simpler architectures and smaller bundles.",
+      "imageUrl": "https://images.unsplash.com/photo-1461749280684-dccba630e2f6",
+      "author": "Hassan Abdelhamed",
+      "title_ar": "مطورو React يتجهون إلى TanStack Start",
+      "subtitle_ar": "العديد من المطورين يبتعدون عن تعقيدات App Router.",
+      "description_ar": "يحظى TanStack Start بشعبية متزايدة بين مطوري React الباحثين عن بنية أبسط وحزم أصغر حجماً.",
+      "likes": 1,
+      "dislikes": 0,
+      "date": "5/7/2026",
+      "id": "vBY0i8J"
+    },
+    {
+      "title": "OpenAI Tools Are Reshaping Frontend Development",
+      "category": "AI",
+      "subtitle": "AI coding assistants are becoming a core part of developer workflows.",
+      "description": "Modern developers increasingly rely on AI-powered tools for debugging, refactoring, and generating components.",
+      "imageUrl": "https://images.unsplash.com/photo-1677442136019-21780ecad995",
+      "author": "Hassan Mihammed",
+      "title_ar": "أدوات OpenAI تعيد تشكيل تطوير الواجهة الأمامية",
+      "subtitle_ar": "مساعدات البرمجة بالذكاء الاصطناعي أصبحت جزءاً أساسياً من عمل المطورين.",
+      "description_ar": "يعتمد المطورون بشكل متزايد على أدوات الذكاء الاصطناعي لتصحيح الأخطاء وتحسين الكود وإنشاء المكونات البرمجية.",
+      "likes": 1,
+      "dislikes": 0,
+      "date": "5/7/2026",
+      "id": "0uTjXr_"
     }
   ],
   "reactions": [
     {
       "userId": 1,
-      "newsId": "HDzQ5ZdSdPY",
+      "newsId": "vBY0i8J",
       "type": "like",
-      "id": 1
+      "id": 2
+    },
+    {
+      "userId": 3,
+      "newsId": "1",
+      "type": "like",
+      "id": 3
+    },
+    {
+      "userId": 3,
+      "newsId": "0uTjXr_",
+      "type": "like",
+      "id": 4
     },
     {
       "userId": 1,
-      "newsId": "aiKsBLR_48w",
-      "type": "like",
-      "id": 3
+      "newsId": "1",
+      "type": "dislike",
+      "id": 5
     }
   ]
 }

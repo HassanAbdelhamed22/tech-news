@@ -1,9 +1,10 @@
 .footer {
   padding: 6rem 0 3rem;
-  background: var(--primary);
-  color: white;
+  background: var(--bg-card);
+  color: var(--fg-main);
   border-top-left-radius: var(--radius-xl);
   border-top-right-radius: var(--radius-xl);
+  border-top: 1px solid var(--border);
 }
 
 .footer-grid {
@@ -16,14 +17,14 @@
 .footer-logo {
   font-size: 2rem;
   font-weight: 800;
-  color: white;
+  color: var(--fg-main);
   margin-bottom: 1.5rem;
   display: inline-block;
   letter-spacing: -0.04em;
 }
 
 .footer-desc {
-  color: rgba(255, 255, 255, 0.6);
+  color: var(--fg-muted);
   font-size: 1rem;
   max-width: 300px;
   line-height: 1.7;
@@ -33,7 +34,7 @@
   font-size: 1.1rem;
   font-weight: 700;
   margin-bottom: 1.5rem;
-  color: white;
+  color: var(--fg-main);
   text-transform: uppercase;
   letter-spacing: 0.1em;
 }
@@ -45,26 +46,26 @@
 }
 
 .footer-link {
-  color: rgba(255, 255, 255, 0.6);
+  color: var(--fg-muted);
   font-size: 0.95rem;
   transition: var(--transition);
 }
 
 .footer-link:hover {
-  color: white;
+  color: var(--accent);
   transform: translateX(5px);
 }
 
 .footer-bottom {
   padding-top: 2.5rem;
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  border-top: 1px solid var(--border);
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
 .copyright {
-  color: rgba(255, 255, 255, 0.4);
+  color: var(--fg-subtle);
   font-size: 0.875rem;
 }
 

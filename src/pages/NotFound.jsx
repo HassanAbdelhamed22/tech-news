@@ -1,8 +1,11 @@
 import { Link } from "react-router";
+import { useTranslation } from "react-i18next";
 import { Home, Compass } from "lucide-react";
 import "../styles/ErrorPage.css";
 
 const NotFound = () => {
+  const { t } = useTranslation();
+
   return (
     <div className="error-page-container">
       <div className="error-content">
@@ -10,20 +13,20 @@ const NotFound = () => {
           <Compass size={60} strokeWidth={1.5} />
         </div>
         <h1 className="error-code">404</h1>
-        <h2 className="error-title">Page Not Found</h2>
+        <h2 className="error-title">{t("notFound.title")}</h2>
         <p className="error-message">
-          Oops! The page you're looking for doesn't exist or has been moved to a new destination in the tech universe.
+          {t("notFound.message")}
         </p>
         <div className="error-actions">
           <Link to="/" className="btn btn-primary">
             <Home size={18} />
-            Back to Home
+            {t("notFound.backHome")}
           </Link>
-          <button 
-            className="btn btn-secondary" 
+          <button
+            className="btn btn-secondary"
             onClick={() => window.history.back()}
           >
-            Go Back
+            {t("notFound.goBack")}
           </button>
         </div>
       </div>

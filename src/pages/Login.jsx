@@ -1,12 +1,13 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router";
-import { useAuth } from "../context/AuthContext";
+import { useTranslation } from "react-i18next";
 import "../styles/Login.css";
-import axios from "axios";
 import toast from "react-hot-toast";
 import { validateField } from "../utils/validate";
 import { Mail, Lock, Eye, EyeOff, Rocket, ShieldCheck } from "lucide-react";
 import API from "../services/api";
+import { useDispatch } from "react-redux";
+import { login } from "../store/slices/authSlice";
 
 const Login = () => {
   const [formData, setFormData] = useState({
@@ -17,8 +18,9 @@ const Login = () => {
   const [rememberMe, setRememberMe] = useState(false);
   const [errors, setErrors] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const { login } = useAuth();
+  const dispatch = useDispatch();
   const navigate = useNavigate();
+  const { t } = useTranslation();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -51,15 +53,17 @@ const Login = () => {
       });
 
       const { user, accessToken } = response.data;
-      login(user, accessToken);
-      toast.success(`Welcome back, ${user.fullName || user.email}!`);
+      dispatch(login({ user, token: accessToken }));
+      toast.success(
+        t("toast.welcomeBack", { name: user.fullName || user.email }),
+      );
       navigate("/");
     } catch (err) {
       console.error("Auth error:", err);
       if (err.response?.status === 400) {
-        toast.error("Invalid email or password");
+        toast.error(t("toast.invalidCredentials"));
       } else {
-        toast.error("Something went wrong. Please try again.");
+        toast.error(t("toast.serverError"));
       }
     } finally {
       setIsSubmitting(false);
@@ -75,13 +79,8 @@ const Login = () => {
             <Rocket size={32} strokeWidth={2.5} />
             TechNews
           </div>
-          <h1 className="visual-title">
-            Join the conversation shaping the future.
-          </h1>
-          <p className="visual-text">
-            The world's most innovative engineers and designers share their
-            insights here. Don't just watch the future happen—be part of it.
-          </p>
+          <h1 className="visual-title">{t("login.brandTitle")}</h1>
+          <p className="visual-text">{t("login.brandText")}</p>
 
           <div className="trending-tags">
             <div className="tag-pill">#AIAgenticWorkflows</div>
@@ -100,7 +99,7 @@ const Login = () => {
           >
             <ShieldCheck size={20} />
             <span style={{ fontSize: "0.875rem", marginLeft: "0.5rem" }}>
-              Your data is encrypted and secure.
+              {t("login.secure")}
             </span>
           </div>
         </div>
@@ -110,8 +109,8 @@ const Login = () => {
       <div className="auth-form-container">
         <div className="auth-card">
           <div className="auth-header">
-            <h2>Welcome Back</h2>
-            <p>Welcome back. Let's get you into the conversation.</p>
+            <h2>{t("login.title")}</h2>
+            <p>{t("login.subtitle")}</p>
           </div>
 
           <div className="social-buttons">
@@ -139,15 +138,15 @@ const Login = () => {
                   fill="#EA4335"
                 />
               </svg>
-              Continue with Google
+              {t("login.continueGoogle")}
             </button>
           </div>
 
-          <div className="divider">or sign in with email</div>
+          <div className="divider">{t("login.orEmail")}</div>
 
           <form className="login-form" onSubmit={handleSubmit}>
             <div className="auth-group">
-              <label className="form-label">Email Address</label>
+              <label className="form-label">{t("login.emailLabel")}</label>
               <div className="input-wrapper">
                 <span className="input-icon">
                   <Mail size={20} />
@@ -157,7 +156,7 @@ const Login = () => {
                   name="email"
                   className="auth-input"
                   value={formData.email}
-                  placeholder="name@example.com"
+                  placeholder={t("login.emailPlaceholder")}
                   onChange={handleChange}
                 />
               </div>
@@ -168,7 +167,7 @@ const Login = () => {
 
             <div className="auth-group">
               <div className="label-row">
-                <label className="form-label">Password</label>
+                <label className="form-label">{t("login.passwordLabel")}</label>
               </div>
               <div className="input-wrapper">
                 <span className="input-icon">
@@ -203,11 +202,11 @@ const Login = () => {
                   checked={rememberMe}
                   onChange={(e) => setRememberMe(e.target.checked)}
                 />
-                Remember me
+                {t("login.rememberMe")}
               </label>
 
               <Link to="#" className="forgot-link">
-                Forgot password?
+                {t("login.forgotPassword")}
               </Link>
             </div>
 
@@ -219,18 +218,18 @@ const Login = () => {
               {isSubmitting ? (
                 <>
                   <div className="spinner"></div>
-                  <span>Authenticating...</span>
+                  <span>{t("login.submitting")}</span>
                 </>
               ) : (
-                "Enter TechNews"
+                t("login.submit")
               )}
             </button>
           </form>
 
           <div className="auth-footer">
-            Don't have an account?
+            {t("login.noAccount")}
             <Link to="/register" className="auth-link">
-              Create one now
+              {t("login.createAccount")}
             </Link>
           </div>
         </div>

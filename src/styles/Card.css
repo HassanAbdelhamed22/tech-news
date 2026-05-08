@@ -153,18 +153,19 @@
   gap: 0.5rem;
   padding: 0.5rem 1.25rem;
   border-radius: 12px;
-  background: #f4f4f5;
-  color: #71717a;
+  background: var(--bg-input);
+  color: var(--fg-muted);
   font-size: 0.95rem;
   font-weight: 600;
   transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-  border: 1px solid transparent;
+  border: 1px solid var(--border);
   cursor: pointer;
 }
 
 .reaction-btn:hover {
-  background: #e4e4e7;
-  color: #18181b;
+  background: var(--bg-card);
+  color: var(--fg-main);
+  border-color: var(--border-focus);
   transform: translateY(-2px);
 }
 

@@ -1,12 +1,35 @@
 import { useState, useEffect } from "react";
 import { Link, NavLink } from "react-router";
-import { useAuth } from "../../context/AuthContext";
-import { LogOut, Home, Rss, User, PlusSquare, Settings, Bookmark } from "lucide-react";
+import { useTranslation } from "react-i18next";
+import {
+  LogOut,
+  Home,
+  Rss,
+  User,
+  PlusSquare,
+  Settings,
+  Bookmark,
+  Languages,
+  Moon,
+  Sun,
+} from "lucide-react";
 import "../../styles/Header.css";
+import { useDispatch, useSelector } from "react-redux";
+import { logout } from "../../store/slices/authSlice";
+import { toggleTheme } from "../../store/slices/themeSlice";
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
-  const { user, logout } = useAuth();
+  const dispatch = useDispatch();
+  const { user } = useSelector((state) => state.auth);
+  const theme = useSelector((s) => s.theme.mode);
+  const { t, i18n } = useTranslation();
+
+  const isArabic = i18n.language === "ar";
+
+  const toggleLanguage = () => {
+    i18n.changeLanguage(isArabic ? "en" : "ar");
+  };
 
   useEffect(() => {
     const handleScroll = () => {
@@ -27,42 +50,69 @@ const Header = () => {
         <nav className="nav">
           <NavLink to="/" className="nav-link">
             <Home size={18} />
-            <span>Home</span>
+            <span>{t("header.home")}</span>
           </NavLink>
           <NavLink to="/feed" className="nav-link">
             <Rss size={18} />
-            <span>Feed</span>
+            <span>{t("header.feed")}</span>
           </NavLink>
-          
+
           {user && (
             <>
               <NavLink to="/my-news" className="nav-link">
                 <Bookmark size={18} />
-                <span>Bookmarks</span>
+                <span>{t("header.bookmarks")}</span>
               </NavLink>
               <NavLink to="/add-news" className="nav-link">
                 <PlusSquare size={18} />
-                <span>Add News</span>
+                <span>{t("header.addNews")}</span>
               </NavLink>
             </>
           )}
         </nav>
 
         <div className="header-actions">
+          {/* Theme Toggle */}
+          <button
+            className="theme-toggle-btn"
+            onClick={() => dispatch(toggleTheme())}
+            title={theme === "dark" ? "Switch to Light" : "Switch to Dark"}
+          >
+            {theme === "dark" ? <Sun size={18} /> : <Moon size={18} />}
+          </button>
+
+          {/* Language Toggle */}
+          <button
+            className="lang-toggle-btn"
+            onClick={toggleLanguage}
+            title={isArabic ? "Switch to English" : "التبديل إلى العربية"}
+          >
+            <Languages size={16} />
+            <span>{isArabic ? "EN" : "AR"}</span>
+          </button>
+
           {user ? (
             <div className="user-profile">
               <span className="user-name">
-                Hi, {user.fullName?.split(" ")[0]}
+                {t("header.hi")}, {user.fullName?.split(" ")[0]}
               </span>
-              <button className="logout-btn" onClick={logout} title="Logout">
+              <button
+                className="logout-btn"
+                onClick={() => dispatch(logout())}
+                title={t("header.logout")}
+              >
                 <LogOut size={18} />
-                <span>Logout</span>
+                <span>{t("header.logout")}</span>
               </button>
             </div>
           ) : (
             <div className="auth-btns">
-              <Link to="/login" className="nav-link">Login</Link>
-              <Link to="/register" className="btn btn-primary">Sign Up</Link>
+              <Link to="/login" className="nav-link">
+                {t("header.login")}
+              </Link>
+              <Link to="/register" className="btn btn-primary">
+                {t("header.signUp")}
+              </Link>
             </div>
           )}
         </div>
